@@ -1,5 +1,7 @@
 package wrappers;
 import java.io.IOException;
+import java.util.HashMap;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -7,11 +9,13 @@ import org.jsoup.select.Elements;
 
 import utility.Result;
 
-public class AmazonScraping {
+public class Amazon {
 	
-	public AmazonScraping(){}
+	private static final String AVAILABILITY = "Availability";
+	private static final String VENDOR = "Vendor";
+	public Amazon(){}
 	
-	public String normalizeSearchQuery(String searchString)
+	private String normalizeSearchQuery(String searchString)
 	{
 		String normalizedString = searchString.replace(" ", "+")
 				.toLowerCase();
@@ -19,7 +23,7 @@ public class AmazonScraping {
 		return normalizedString;
 	}
 	
-	public String onlyGameUrl(String searchQuery)
+	private String onlyGameUrl(String searchQuery)
 	{
 		String gameUrl = "https://www.amazon.it/s/ref=sr_nr_n_3?fst=as%3Aoff&rh=n%3A412603031%2Cn%3A13900044031%2Ck%3A"
 						+searchQuery+"&page=1&keywords="+searchQuery+"&ie";
@@ -31,6 +35,7 @@ public class AmazonScraping {
 		Result minResult = null;
 		try {
 			Document doc = Jsoup.connect(onlyGameUrl(normalizeSearchQuery(queryString))).get();
+			//System.out.println(onlyGameUrl(normalizeSearchQuery(queryString)));
 			if(doc == null)
 			{
 				return null;
@@ -65,6 +70,7 @@ public class AmazonScraping {
 							+ " div.a-column.a-span7 > div:nth-child(1) > a").first();
 					
 				}
+				
 				if(priceEl == null)
 				{
 					
@@ -112,23 +118,28 @@ public class AmazonScraping {
 			e.printStackTrace();
 		}
 		
-		minResult.setAvailability(getAvailabilityOfResult(minResult));
+		HashMap<String, String> otherResult = getOtherInfomation(minResult);
+		
+		minResult.setAvailability(otherResult.get(AVAILABILITY));
+		minResult.setVendor(otherResult.get(VENDOR));
+		
 		
 		return minResult;
 	}
 	
-	private String getAvailabilityOfResult(Result result)
+	private HashMap<String, String> getOtherInfomation(Result result)
 	{
-		String availability = null;
-		
+		HashMap<String, String> otherInfo = new HashMap<>();
 		try {
 			Document doc = Jsoup.connect(result.getLinkRef()).get();
 			Element avilEl = doc.select("#availability > span").first();
-			availability = avilEl.text();
+			Element vendorEl = doc.select("#merchant-info").first();
+			otherInfo.put(AVAILABILITY, avilEl.text());
+			otherInfo.put(VENDOR, vendorEl.text());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return availability;
+		return otherInfo;
 		
 	}
 

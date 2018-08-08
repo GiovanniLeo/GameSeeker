@@ -8,6 +8,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import utility.Result;
+import utility.Utitlity;
 
 public class Amazon {
 	
@@ -15,13 +16,7 @@ public class Amazon {
 	private static final String VENDOR = "Vendor";
 	public Amazon(){}
 	
-	private String normalizeSearchQuery(String searchString)
-	{
-		String normalizedString = searchString.replace(" ", "+")
-				.toLowerCase();
-		
-		return normalizedString;
-	}
+
 	
 	private String onlyGameUrl(String searchQuery)
 	{
@@ -34,8 +29,9 @@ public class Amazon {
 	{
 		Result minResult = null;
 		try {
-			Document doc = Jsoup.connect(onlyGameUrl(normalizeSearchQuery(queryString))).get();
-			//System.out.println(onlyGameUrl(normalizeSearchQuery(queryString)));
+			String url = onlyGameUrl(Utitlity.normalizeSearchQuery(queryString, true));
+			Document doc = Jsoup.connect(url).get();
+			
 			if(doc == null)
 			{
 				return null;

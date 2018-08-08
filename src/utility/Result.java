@@ -14,6 +14,8 @@ public class Result {
 	private int feedback;
 	private String releaseDate;
 	private String developer;
+	private String requisitiMinimi;
+	private String requisitiConsigliati;
 	
 	
 
@@ -64,7 +66,60 @@ public class Result {
 	
 
 
+	/**
+	 * Construttore instant gaming
+	 * @param title
+	 * @param imgUrl
+	 * @param linkRef
+	 * @param plattformTitle
+	 * @param price
+	 * @param availability
+	 * @param description
+	 * @param feedback
+	 * @param releaseDate
+	 * @param requisitiMinimi
+	 * @param requisitiConsigliati
+	 */
 
+	public Result(String title, String imgUrl, String linkRef, String plattformTitle, double price, String availability,
+			String description, int feedback, String releaseDate, String requisitiMinimi, String requisitiConsigliati) {
+		super();
+		this.title = title;
+		this.imgUrl = imgUrl;
+		this.linkRef = linkRef;
+		this.plattformTitle = plattformTitle;
+		this.price = price;
+		this.availability = availability;
+		this.description = description;
+		this.feedback = feedback;
+		this.releaseDate = releaseDate;
+		this.requisitiMinimi = requisitiMinimi;
+		this.requisitiConsigliati = requisitiConsigliati;
+	}
+
+	public String getDeveloper() {
+		return developer;
+	}
+
+	public void setDeveloper(String developer) {
+		this.developer = developer;
+	}
+
+	public String getRequisitiMinimi() {
+		return requisitiMinimi;
+	}
+
+	public void setRequisitiMinimi(String requisitiMinimi) {
+		this.requisitiMinimi = requisitiMinimi;
+	}
+
+	public String getRequisitiConsigliati() {
+		return requisitiConsigliati;
+	}
+
+	public void setRequisitiConsigliati(String requisitiConsigliati) {
+		this.requisitiConsigliati = requisitiConsigliati;
+	}
 
 	public String getTitle() {
 		return title;
@@ -176,16 +231,26 @@ public class Result {
 
 	
 	public String steamToString() {
-		return "Result [title=" + title + "\n, imgUrl=" + imgUrl + "\n, linkRef=" + linkRef + "\n, price=" + price
-				+ "\n, description=" + description + "\n, category=" + category + "\n, feedback=" + feedback
-				+ "\n, releaseDate=" + releaseDate + "\n, developer=" + developer + "]";
+		return "Result [title=" + title + "\n imgUrl=" + imgUrl + "\n linkRef=" + linkRef + "\n price=" + price
+				+ "\n description=" + description + "\n category=" + category + "\n feedback=" + feedback
+				+ "\n releaseDate=" + releaseDate + "\n developer=" + developer + "]";
 	}
 
 	
 	public String amazonToString() {
-		return "Result [title=" + title + "\n, imgUrl=" + imgUrl + "\n, linkRef=" + linkRef + "\n, plattformTitle="
-				+ plattformTitle + "\n, price=" + price + "\n, availability=" + availability + "\n, vendor=" + vendor + "]";
+		return "Result [title=" + title + "\n imgUrl=" + imgUrl + "\n linkRef=" + linkRef + "\n plattformTitle="
+				+ plattformTitle + "\n price=" + price + "\n availability=" + availability + "\n vendor=" + vendor + "]";
 	}
+
+	
+	public String instantGamingToString() {
+		return "Result [title=" + title + "\n imgUrl=" + imgUrl + "\n linkRef=" + linkRef + "\n plattformTitle="
+				+ plattformTitle + "\n price=" + price + "\n availability=" + availability + "\n description="
+				+ description + "\n feedback=" + feedback + "\n releaseDate=" + releaseDate + "\n requisitiMinimi="
+				+ requisitiMinimi + "\n requisitiConsigliati=" + requisitiConsigliati + "\n]"+"\n------------------------\n";
+	}
+	
+	
 	
 	
 	

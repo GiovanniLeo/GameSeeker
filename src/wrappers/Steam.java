@@ -25,21 +25,16 @@ public class Steam
 	private static final String CATEGORY = "Category";
 	
 	
-	private String normalizeSearchQuery(String searchQuery)
-	{
-		String gameUrl = "https://store.steampowered.com/search/?term="
-						+searchQuery.replace(" ", "+");
-		
-		return gameUrl;
-	}
 	
 	public ArrayList<Result> searchResul(String searchQuery)
 	{
+		String url = "https://store.steampowered.com/search/?term=";
+		String gameUrl = url+Utitlity.normalizeSearchQuery(searchQuery, false);
 		ArrayList<Result> results = new ArrayList<>();
 		try {
 			
-			Document doc = Jsoup.connect(normalizeSearchQuery(searchQuery)).get();
-			System.out.println(normalizeSearchQuery(searchQuery));
+			Document doc = Jsoup.connect(gameUrl).get();
+			System.out.println(gameUrl);
 			
 			if(doc == null)
 			{

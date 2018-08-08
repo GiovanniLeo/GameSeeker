@@ -10,4 +10,15 @@ public class Utitlity {
 		clearString = string.replaceAll("[^a-zA-Z]+", " ");
 		return clearString;
 	}
+	
+	public static String normalizeSearchQuery(String searchQuery, boolean lowercase)
+	{
+		String normalizedSearchQuery = searchQuery.replace(" ", "+");
+		if (lowercase) {
+			
+			normalizedSearchQuery = normalizedSearchQuery.toLowerCase();
+		}
+		
+		return normalizedSearchQuery;
+	}
 }

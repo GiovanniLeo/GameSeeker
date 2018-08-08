@@ -21,11 +21,20 @@ public class Test {
 //		}
 //		
 	
-		Steam steam = new Steam();
-		 ArrayList<Result> results = steam.searchResul("Counter Strike");
+//		Steam steam = new Steam();
+//		 ArrayList<Result> results = steam.searchResul("Counter Strike");
+//		 for (int i = 0; i < results.size(); i++) {
+//			
+//			System.out.println(results.get(i).steamToString());
+//		}
+		
+		
+		InstantGaming ig = new InstantGaming();
+		 ArrayList<Result> results = ig.searchResults("Airport Simulator");
+		 
 		 for (int i = 0; i < results.size(); i++) {
 			
-			System.out.println(results.get(i).steamToString());
+			System.out.println(results.get(i).instantGamingToString());
 		}
 		
 	}

@@ -64,9 +64,17 @@ public class Test {
 						minP = results2.get(j).getPrice();
 						link =  results2.get(j).getLinkRef();
 					}
+					
+					int goodRewiews = results.get(i).getFeedback();
+					if(results2.get(j).getFeedback() > 0)
+					{
+						goodRewiews+=results2.get(j).getFeedback();
+						goodRewiews = goodRewiews/2;
+					}
+					
 
 					System.out.println("{\n"+results.get(i).getTitle()+"\n"+
-							results2.get(j).getTitle()+"\n"+"distance->"+distance+"\nMinP->"+minP+"\nLink->"+link+"\n}");
+							results2.get(j).getTitle()+"\n"+"distance->"+distance+"\nMinP->"+minP+"\nLink->"+link+"\nRewiew->"+goodRewiews+"\n}");
 
 
 				}

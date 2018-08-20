@@ -1,4 +1,4 @@
-package wrappers;
+package com.mycompany.gameseeker.wrappers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -141,7 +141,7 @@ public class Steam
 			   goodReview = (totalReview * percentage)/100;
 			}
 			
-			String price = priceEl.text().replace("€", "").replace(",", ".");
+			String price = priceEl.text().replace("â‚¬", "").replace(",", ".");
 			String relaseDate = relaseDateEl.text();
 			String developer = developerEl.text();
 			String category = catagoryEl.text();

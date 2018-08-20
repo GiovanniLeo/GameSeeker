@@ -1,4 +1,4 @@
-package wrappers;
+package com.mycompany.gameseeker.wrappers;
 import java.io.IOException;
 import java.util.HashMap;
 

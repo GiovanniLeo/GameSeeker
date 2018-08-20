@@ -1,4 +1,4 @@
-package wrappers;
+package com.mycompany.gameseeker.wrappers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -136,7 +136,7 @@ public class InstantGaming {
 			String platform = plattformEl.text();
 			String description = descriptionEl.text();
 			String releaseDate = releaseDateEl.text();
-			String price = priceEL.text().replace(",",".").replace("€", "");
+			String price = priceEL.text().replace(",",".").replace("â‚¬", "");
 			
 			String numOfRewiewString = numOfRewiewEl.text();
 

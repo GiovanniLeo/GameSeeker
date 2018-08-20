@@ -1,6 +1,6 @@
-package wrappers;
+package com.mycompany.gameseeker.wrappers;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 
 import org.jsoup.Jsoup;
@@ -16,7 +16,7 @@ public class YouTube {
 	public static final String VD = "Video";
 	
 	/**
-	 * Retituisce il video più visto e il gmaeplay più visto
+	 * Retituisce il video piï¿½ visto e il gmaeplay piï¿½ visto
 	 * @param searchQuery
 	 * @return
 	 */

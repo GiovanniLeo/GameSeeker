@@ -1,4 +1,4 @@
-package wrappers;
+package com.mycompany.gameseeker.wrappers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import distanceComputation.Levenshtein;
-import task.InstantGamingTask;
+import com.mycompany.gameseeker.task.InstantGamingTask;
 import task.SteamTask;
 import utility.Result;
 

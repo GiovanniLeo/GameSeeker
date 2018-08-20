@@ -1,10 +1,11 @@
-package task;
+package com.mycompany.gameseeker.task;
 
+import com.mycompany.gameseeker.wrappers.InstantGaming;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
 import utility.Result;
-import wrappers.InstantGaming;
+
 
 
 

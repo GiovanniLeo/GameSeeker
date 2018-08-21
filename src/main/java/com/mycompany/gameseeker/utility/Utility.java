@@ -3,6 +3,8 @@ package com.mycompany.gameseeker.utility;
 
 
 public class Utility {
+    
+    
 
 	public static String clearSpecialCharacter(String string)
 	{

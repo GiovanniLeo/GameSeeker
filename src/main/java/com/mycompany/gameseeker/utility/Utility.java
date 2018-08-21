@@ -1,8 +1,8 @@
-package utility;
+package com.mycompany.gameseeker.utility;
 
 
 
-public class Utitlity {
+public class Utility {
 
 	public static String clearSpecialCharacter(String string)
 	{

@@ -1,9 +1,8 @@
-package task;
+package com.mycompany.gameseeker.task;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
-
-import utility.Result;
+import com.mycompany.gameseeker.utility.*;
 import com.mycompany.gameseeker.wrappers.Steam;
 
 public class SteamTask implements Callable<ArrayList<Result>> {

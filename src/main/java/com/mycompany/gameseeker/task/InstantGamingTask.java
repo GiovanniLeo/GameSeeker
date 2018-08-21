@@ -3,8 +3,8 @@ package com.mycompany.gameseeker.task;
 import com.mycompany.gameseeker.wrappers.InstantGaming;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
+import com.mycompany.gameseeker.utility.*;
 
-import utility.Result;
 
 
 

@@ -1,17 +1,15 @@
 package com.mycompany.gameseeker.wrappers;
 import java.io.IOException;
 import java.util.HashMap;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import com.mycompany.gameseeker.utility.*;
 
-import utility.Result;
-import utility.Utitlity;
 
 public class Amazon {
-	
+	public static final String AMAZON = "Amazon";
 	private static final String AVAILABILITY = "Availability";
 	private static final String VENDOR = "Vendor";
 	public Amazon(){}
@@ -29,7 +27,7 @@ public class Amazon {
 	{
 		Result minResult = null;
 		try {
-			String url = onlyGameUrl(Utitlity.normalizeSearchQuery(queryString, true));
+			String url = onlyGameUrl(Utility.normalizeSearchQuery(queryString, true));
 			Document doc = Jsoup.connect(url).get();
 			
 			if(doc == null)

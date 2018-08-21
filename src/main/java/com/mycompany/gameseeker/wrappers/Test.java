@@ -7,11 +7,10 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
 import distanceComputation.Levenshtein;
 import com.mycompany.gameseeker.task.InstantGamingTask;
-import task.SteamTask;
-import utility.Result;
+import com.mycompany.gameseeker.utility.*;
+import com.mycompany.gameseeker.task.*;
 
 public class Test {
 	
@@ -101,6 +100,9 @@ public class Test {
 		double total = (end-start)/1000;
 		System.out.println("Tempo totale in secondi:"+total);
 
+                
+                Everyeye ey = new Everyeye();
+                ey.searchResults("Dark Souls");
 
 
 

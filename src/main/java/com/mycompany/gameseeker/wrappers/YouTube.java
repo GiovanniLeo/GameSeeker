@@ -2,13 +2,10 @@ package com.mycompany.gameseeker.wrappers;
 
 
 import java.util.HashMap;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-
-
-import utility.Utitlity;
+import com.mycompany.gameseeker.utility.*;
 
 public class YouTube {
 
@@ -23,7 +20,7 @@ public class YouTube {
 	public HashMap<String, String> searchResults(String searchQuery)
 	{
 		String url = "https://www.youtube.com/results?search_query=";
-		String gameUrl = url + Utitlity.normalizeSearchQuery(searchQuery, false)+"&sp=CAMSAhABQgQIABIA";
+		String gameUrl = url + Utility.normalizeSearchQuery(searchQuery, false)+"&sp=CAMSAhABQgQIABIA";
 		HashMap<String, String> results = new HashMap<>();
 		try {
 			
@@ -40,7 +37,7 @@ public class YouTube {
 
 			}
 			
-			gameUrl = url + Utitlity.normalizeSearchQuery(searchQuery+" gameplay", false)
+			gameUrl = url + Utility.normalizeSearchQuery(searchQuery+" gameplay", false)
 											+"&sp=CAMSAhABQgQIABIA";
 			
 			 doc = Jsoup.connect(gameUrl)

@@ -9,13 +9,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import utility.Result;
-import utility.Utitlity;
+import com.mycompany.gameseeker.utility.*;
 
 public class Steam 
 {
-	
+	public static final String STEAM = "Steam";
 	private static final String IMG = "ImgLink";
 	private static final String DESCRIPTION = "Description";
 	private static final String FEEDBACK = "Feedback";
@@ -29,7 +27,7 @@ public class Steam
 	public ArrayList<Result> searchResul(String searchQuery)
 	{
 		String url = "https://store.steampowered.com/search/?term=";
-		String gameUrl = url+Utitlity.normalizeSearchQuery(searchQuery, false);
+		String gameUrl = url+Utility.normalizeSearchQuery(searchQuery, false);
 		ArrayList<Result> results = new ArrayList<>();
 		try {
 			
@@ -61,8 +59,8 @@ public class Steam
 				HashMap<String, String> map  = new HashMap<>();
 				
 				
-				if(Utitlity.clearSpecialCharacter(title).toLowerCase()
-						.contains(Utitlity.clearSpecialCharacter(searchQuery).toLowerCase()))
+				if(Utility.clearSpecialCharacter(title).toLowerCase()
+						.contains(Utility.clearSpecialCharacter(searchQuery).toLowerCase()))
 				{
 					
 					map = getOtherInfo(linkToRef);

@@ -18,68 +18,67 @@ import com.mycompany.gameseeker.utility.*;
  * @author johnn
  */
 public class Everyeye {
-    
+
     private static final String PUB = "Publisher";
     private static final String REW = "Review";
-  
-    public ArrayList<Result> searchResults(String searchQuery)
-    {
+
+    public ArrayList<Result> searchResults(String searchQuery) {
           
         ArrayList<Result> results = new ArrayList<>();
         String url = "https://www.everyeye.it/ricerca/?q=";
-        String gameUrl = url + Utility.normalizeSearchQuery(searchQuery,false)+"&recensioni=1";
+        String gameUrl = url + Utility.normalizeSearchQuery(searchQuery, false) + "&recensioni=1";
         System.out.println(gameUrl);
         int childNum = 1;
-        
+
         try {
             Document doc = Jsoup.connect(gameUrl).get();
             Elements listOfResult = doc.select("#bodybg > main > div > "
                     + "div.cont-pagina-ricerca > div.parte-sinistra > div "
                     + "> div.contenuti > article:nth-child(n)");
-            System.out.println(listOfResult.size());
-            Element titleEl,linkToRefEl,valutationEl;
-            String title,linkToRef,rewiew;
+            Element titleEl, linkToRefEl, valutationEl;
+            String title, linkToRef, rewiew;
             double valutation;
-            for(int i = 0; i < listOfResult.size(); i++)
-            {
+            for (int i = 0; i < listOfResult.size(); i++) {
+               
                 titleEl = doc.selectFirst("#bodybg > main > div >"
                         + " div.cont-pagina-ricerca > div.parte-sinistra >"
-                        + " div > div.contenuti > article:nth-child("+childNum+") > div > "
+                        + " div > div.contenuti > article:nth-child(" + childNum + ") > div > "
                         + "a > h2");
-                
-                linkToRefEl  = doc.selectFirst("#bodybg > main > div >"
+
+                linkToRefEl = doc.selectFirst("#bodybg > main > div >"
                         + " div.cont-pagina-ricerca > div.parte-sinistra >"
-                        + " div > div.contenuti > article:nth-child("+childNum+") > div > "
-                        + "a"); 
-                valutationEl = doc.selectFirst("#bodybg > main > div >"
-                        + " div.cont-pagina-ricerca > div.parte-sinistra > div"
-                        + " > div.contenuti > article:nth-child("+childNum+") > a > div");
-                       
-              
-                if(valutationEl == null) continue;
-                
-                
+                        + " div > div.contenuti > article:nth-child(" + childNum + ") > div > "
+                        + "a");
+                valutationEl = doc.selectFirst("#bodybg > main > div "
+                        + "> div.cont-pagina-ricerca > div.parte-sinistra "
+                        + "> div > div.contenuti > article:nth-child(" + childNum + ")"
+                        + " div[class='ico-voto']");
+               
+                if (valutationEl == null) {
+                    childNum++;
+                    continue;
+                }
+
                 title = titleEl.text();
                 linkToRef = linkToRefEl.attr("href");
                 valutation = Double.parseDouble(valutationEl.text());
-                HashMap<String,String> map = getOtherInformation(linkToRef);
+                HashMap<String, String> map = getOtherInformation(linkToRef);
                 rewiew = map.get(REW);
                 String publisher = map.get(PUB);
                 results.add(new Result(title, rewiew, publisher));
                 childNum++;
             }
-            
-        } 
-        catch (Exception e) {
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
+
         return results;
     }
-    
-    private HashMap<String,String> getOtherInformation(String linToRef)
-    {
-        HashMap<String,String> map = new HashMap<>();
-        String rewiew,publisher;
+
+    private HashMap<String, String> getOtherInformation(String linToRef) {
+        HashMap<String, String> map = new HashMap<>();
+        String rewiew, publisher;
         try {
             Document doc = Jsoup.connect(linToRef).get();
             Element rewviewEl = doc.selectFirst("#inread > div:nth-child(3)");
@@ -90,9 +89,8 @@ public class Everyeye {
             publisher = publisherEl.text();
             map.put(REW, rewiew);
             map.put(PUB, publisher);
-            
-        } 
-        catch (Exception e) {
+
+        } catch (Exception e) {
         }
         return map;
     }

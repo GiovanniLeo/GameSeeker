@@ -24,10 +24,13 @@ public class InstantGaming {
 
     public ArrayList<Result> searchResults(String searchQuery) {
         ArrayList<Result> results = new ArrayList<>();
-        String url = "https://www.instant-gaming.com/it/ricerca/?type%5B%5D=battle.net&type%5B%5D=origin&type%5B%5D"
-                + "=other&type%5B%5D=rockstar&type%5B%5D=steam&type%5B%5D=uplay&all_cats=1&min_price=0&max_price=100&noprice"
-                + "=1&min_discount=0&max_discount=100&min_reviewsavg=10&max_reviewsavg=100&noreviews=1&available_in=IT&gametype="
-                + "all&sort_by=&query=";
+        String url = "https://www.instant-gaming.com/it/ricerca/?"
+                + "type%5B%5D=battle.net&type%5B%5D=gog.com&type%5B%5D="
+                + "origin&type%5B%5D=rockstar&type%5B%5D=steam&type%5B%5D="
+                + "uplay&all_cats=1&min_price=0&max_price=100"
+                + "&noprice=1&min_discount=0&max_discount=100&min_reviewsavg=10"
+                + "&max_reviewsavg=100&noreviews=1&available_in=IT&gametype=all"
+                + "&sort_by=&query=";
         String gameUrl = url + Utility.normalizeSearchQuery(searchQuery, false);
         System.out.println(gameUrl);
         try {
@@ -60,6 +63,7 @@ public class InstantGaming {
                 linkEl = doc.selectFirst(baseUrl + " > a");
 
                 title = titleEl.text();
+
                 imgUrl = imgEl.attr("src");
                 linkToRef = linkEl.attr("href");
 
@@ -68,14 +72,16 @@ public class InstantGaming {
                     HashMap<String, String> map = getOtherInformation(linkToRef);
 
                     if (map == null) {
+                        childNum++;
                         continue;
                     }
-                    if (map.get(PLATTFORM).toLowerCase().equals(Steam.STEAM.toLowerCase())) {
-                        results.add(new Result(title, imgUrl, linkToRef, map.get(PLATTFORM),
-                                Double.parseDouble(map.get(PRICE)), map.get(AVAILABILITY),
-                                map.get(DESCRIPTION), Integer.parseInt(map.get(FEEDBACK)),
-                                map.get(RELEASEDATE), map.get(MIN), map.get(REC)));
-                    }
+                    // if (map.get(PLATTFORM).toLowerCase().equals(Steam.STEAM.toLowerCase())) {
+
+                    results.add(new Result(title, imgUrl, linkToRef, map.get(PLATTFORM),
+                            Double.parseDouble(map.get(PRICE)), map.get(AVAILABILITY),
+                            map.get(DESCRIPTION), Integer.parseInt(map.get(FEEDBACK)),
+                            map.get(RELEASEDATE), map.get(MIN), map.get(REC)));
+                    //  }
 
                 }
 

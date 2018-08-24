@@ -6,7 +6,7 @@
 package com.mycompany.gameseeker.task;
 
 import com.mycompany.gameseeker.utility.Result;
-import com.mycompany.gameseeker.wrappers.Everyeye;
+import com.mycompany.gameseeker.wrappers.G2A;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
@@ -14,21 +14,19 @@ import java.util.concurrent.Callable;
  *
  * @author johnn
  */
-public class EveryeyeTask implements Callable<ArrayList<Result>>{
+public class G2AAdditionalComponentTask implements Callable<ArrayList<String>>{
     
-    private String searchString;
-    private Everyeye ev;
+   ;
+    private G2A g2a;
 
-    public EveryeyeTask(String searchString) {
-        this.searchString = searchString;
-        ev = new Everyeye();
+    public G2AAdditionalComponentTask() {
+        g2a = new G2A();
+        
     }
-
+  
     @Override
-    public ArrayList<Result> call() throws Exception {
-     return ev.searchResults(searchString);
+    public ArrayList<String> call() throws Exception {
+        return g2a.getListOfAllAdditionalComponents();
     }
-    
-    
     
 }

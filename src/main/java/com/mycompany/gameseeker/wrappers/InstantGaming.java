@@ -31,6 +31,13 @@ public class InstantGaming {
                 + "&noprice=1&min_discount=0&max_discount=100&min_reviewsavg=10"
                 + "&max_reviewsavg=100&noreviews=1&available_in=IT&gametype=all"
                 + "&sort_by=&query=";
+
+        if (searchQuery.toLowerCase().contains(Utility.DS)) {
+            searchQuery = Utility.clearSpecialCharacterWithDigits(searchQuery);
+            searchQuery = Utility.checkRomanNumber(searchQuery);
+        }
+
+        System.out.println("Ig->" + searchQuery);
         String gameUrl = url + Utility.normalizeSearchQuery(searchQuery, false);
         System.out.println(gameUrl);
         try {
@@ -38,7 +45,7 @@ public class InstantGaming {
             Document doc = Jsoup.connect(gameUrl).get();
 
             Elements listOfResult = doc.select("#ig-panel-center > div.search-wrapper > div.search > div:nth-child(n)");
-            System.out.println(listOfResult.size());
+
             int childNum = 1;
 
             Element titleEl, imgEl, linkEl;

@@ -46,7 +46,7 @@ public class Test {
 		ArrayList<Result> results2 = ig.searchResults("fddfgdfgdgd");*/
 		
 		//ArrayList<Result> results,results2;
-		/*G2A g2a = new G2A();
+		G2A g2a = new G2A();/*
                 ArrayList<Result> results3 = g2a.searchResults("Overwatch");
                 for(int i = 0; i < results3.size(); i++)
                 {
@@ -137,11 +137,25 @@ public class Test {
 		System.out.println("Tempo totale in secondi:"+total);*/
 
                 
-                Everyeye ey = new Everyeye();
+              /*  Everyeye ey = new Everyeye();
 
                 ArrayList<Result> res;
                 res = ey.searchResults("Grand Theft Auto V");
-                System.out.println(res.size());
+                System.out.println(res.size());*/
+              
+          /*    ArrayList<String> titles = new ArrayList<>();
+              titles = g2a.getListOfAllAdditionalComponents();
+              
+              for (int i = 0; i < titles.size(); i++) {
+                  System.out.println(titles.get(i));
+            }*/
+          
+          ArrayList<Result> result = new ArrayList<>();
+          result = g2a.searchResults("Dark souls 2");
+            for (int i = 0; i < result.size(); i++) {
+                System.out.println(result.get(i).getTitle());
+                System.out.println(result.get(i).getPlattformTitle());
+            }
 
 
 	}

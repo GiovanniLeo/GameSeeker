@@ -26,6 +26,12 @@ public class Everyeye {
           
         ArrayList<Result> results = new ArrayList<>();
         String url = "https://www.everyeye.it/ricerca/?q=";
+        
+        if (searchQuery.toLowerCase().contains(Utility.DS)) {
+            searchQuery = Utility.clearSpecialCharacterWithDigits(searchQuery);
+            searchQuery = Utility.checkRomanNumber(searchQuery);
+        }
+        
         String gameUrl = url + Utility.normalizeSearchQuery(searchQuery, false) + "&recensioni=1";
         System.out.println(gameUrl);
         int childNum = 1;

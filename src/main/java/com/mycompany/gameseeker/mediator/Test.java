@@ -12,6 +12,6 @@ package com.mycompany.gameseeker.mediator;
 public class Test {
     public static void main(String[] args) {
         Mediator md = new Mediator();
-        md.getData("Grand Theft Auto V");
+        md.selectElements("Dark souls II");
     }
 }

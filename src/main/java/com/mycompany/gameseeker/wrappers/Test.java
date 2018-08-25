@@ -24,9 +24,9 @@ public class Test {
         
         
 	public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
-				Amazon amz = new Amazon();
+	/*			Amazon amz = new Amazon();
 				Result minResult;
-                                 minResult = amz.searchResult("Dark souls II");
+                                 minResult = amz.searchResult("Dark souls ");
 				if(minResult != null)
 				{
 				System.out.println(minResult.getTitle() +"\n"+minResult.getImgUrl() +"\n"+minResult.getLinkRef() +"\n"+
@@ -38,7 +38,7 @@ public class Test {
 					System.out.println("Nessun risultato trovato");
 				}
 		
-
+*/
 		long start = System.currentTimeMillis();
 //		Steam steam = new Steam();
 //		ArrayList<Result> results = steam.searchResul("Dark Souls");
@@ -151,12 +151,12 @@ public class Test {
                   System.out.println(titles.get(i));
             }*/
           
-      /*    ArrayList<Result> result = new ArrayList<>();
-          result = g2a.searchResults("Dark souls 2");
+          ArrayList<Result> result = new ArrayList<>();
+          result = g2a.searchResults("Dark souls");
             for (int i = 0; i < result.size(); i++) {
                 System.out.println(result.get(i).getTitle());
                 System.out.println(result.get(i).getPlattformTitle());
-            }*/
+            }
 
 
 	}

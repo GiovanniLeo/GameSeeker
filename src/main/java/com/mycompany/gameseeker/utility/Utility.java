@@ -1,8 +1,11 @@
 package com.mycompany.gameseeker.utility;
 
+import java.util.logging.Logger;
+
 public class Utility {
 
     public static final String DS = "dark souls";
+    
 
     public static String clearSpecialCharacter(String string) {
         String clearString = "";

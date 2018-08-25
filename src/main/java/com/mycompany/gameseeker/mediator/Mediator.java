@@ -134,6 +134,9 @@ public class Mediator {
                             
                             System.out.println(igResults.get(i).getPlattformTitle() + "\n" + g2aResults.get(j).getPlattformTitle());
                             System.out.println(loweIgTitle + "\n" + lowerG2ATitle + "\n-----------");
+                            
+                            igResults.remove(i);
+                            g2aResults.remove(j);
                         }
                     }
 

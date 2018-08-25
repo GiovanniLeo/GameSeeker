@@ -135,15 +135,17 @@ public class G2A {
                     + "> li:nth-child(1) > div > button > div"
                     + " > span:nth-child(2)");
 
+            if (plattformEl == null || priceEl == null || regionEl == null) {
+                return null;
+            }
+            
             String region = regionEl.text();
 
             if (!region.equalsIgnoreCase("Can be activated in Italy")) {
                 return null;
             }
 
-            if (plattformEl == null || priceEl == null || regionEl == null) {
-                return null;
-            }
+            
 
             String price = priceEl.text().replace("EUR", "").replace(" ", "");
             //System.out.println(price);

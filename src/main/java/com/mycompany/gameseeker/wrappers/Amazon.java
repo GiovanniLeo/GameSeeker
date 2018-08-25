@@ -7,6 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import com.mycompany.gameseeker.utility.*;
+import java.util.logging.Logger;
 
 public class Amazon {
 
@@ -24,12 +25,12 @@ public class Amazon {
     }
 
     public Result searchResult(String queryString) {
-        Result minResult = new Result();
+        Result minResult = null;
         try {
             String url = onlyGameUrl(Utility.normalizeSearchQuery(queryString, true));
-           
-            Document doc = Jsoup.connect(url).get();
 
+            Document doc = Jsoup.connect(url).get();
+            System.out.println(url);
             if (doc == null) {
                 return null;
             }
@@ -83,32 +84,35 @@ public class Amazon {
                 price = Double.parseDouble(priceString[1].replace(",", "."));
 
                 if (plattformTitle.equalsIgnoreCase("pc")) {
-                       
-                      String titleLower = Utility.checkRomanNumber(title).toLowerCase();
+
+                    String titleLower = Utility.checkRomanNumber(title).toLowerCase();
                     String searchStringLower = Utility.checkRomanNumber(queryString).toLowerCase();
                     if (titleLower.contains(searchStringLower)) {
-                     
+
                         temp = new Result(title, imgUrl, linkRef, plattformTitle, price);
-                       
+
                         if (i == 0) {
                             minResult = temp;
-
-                        } else {
-                            if (minResult.getPrice() > temp.getPrice()) {
-                                minResult = temp;
-                            }
                         }
-
+                        if (minResult == null && i != 0) {
+                             minResult = temp;
+                        }
+                        if (i != 0) {
+                            if (minResult.getPrice() > temp.getPrice()) {
+                                minResult = temp;                            
+                            }                          
+                        }
+                        
                     }
                 }
 
             } //end for
-
+         
         } catch (IOException e) {
 
             e.printStackTrace();
         }
-      
+
         HashMap<String, String> otherResult = getOtherInfomation(minResult);
 
         minResult.setAvailability(otherResult.get(AVAILABILITY));
@@ -119,7 +123,7 @@ public class Amazon {
 
     private HashMap<String, String> getOtherInfomation(Result result) {
         HashMap<String, String> otherInfo = new HashMap<>();
-       
+
         try {
             Document doc = Jsoup.connect(result.getLinkRef()).get();
             Element avilEl = doc.select("#availability > span").first();

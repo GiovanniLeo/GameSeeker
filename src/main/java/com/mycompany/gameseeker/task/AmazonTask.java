@@ -19,6 +19,7 @@ public class AmazonTask implements Callable<Result>{
 
     public AmazonTask(String searchString) {
         this.searchString = searchString;
+        amazon = new Amazon();
     }
     
     

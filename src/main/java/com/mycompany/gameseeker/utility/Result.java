@@ -105,6 +105,9 @@ public class Result {
         this.rewiew = rewiew;
         this.publisher = publisher;
     }
+
+    public Result() {
+    }
     
     
 

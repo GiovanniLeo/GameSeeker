@@ -52,12 +52,15 @@ public class Mediator {
 
         Future<HashMap<String, String>> fYouTube = exec
                 .submit(new YouTubeTask(searchQuery));
+        Future<Result> fAmazon = exec
+                .submit(new AmazonTask(searchQuery));
 
         try {
             igResults = fInstantGaming.get();
             g2aResults = fG2A.get();
             youTubeResults = fYouTube.get();
             everyeyeResults = fEveryeye.get();
+            amazonResult = fAmazon.get();
         } catch (Exception e) {
             e.printStackTrace();
         }

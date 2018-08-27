@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.mycompany.gameseeker.mediator.Mediator;
+
 /**
  *
  * @author raffa
@@ -35,9 +36,17 @@ public class MinPriceTest extends HttpServlet {
         String title = request.getParameter("titolo");
         Mediator md = new Mediator();
         md.selectElements(title);
+        //ottengo l'oggetto con le info
+        //istanzio un bean
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
+        /*
+        HttpSession session = request.getSession(true)
+        session.setAttribute("game",game);
+        forward(request,response,"/NameJsp.jsp");
+     
+         */
         }
     }
 
@@ -54,12 +63,12 @@ public class MinPriceTest extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-         try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MinPriceTest</title>");            
+            out.println("<title>Servlet MinPriceTest</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet MinPriceTest at " + request.getContextPath() + "</h1>");

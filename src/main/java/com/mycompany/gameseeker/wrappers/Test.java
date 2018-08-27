@@ -26,7 +26,7 @@ public class Test {
 	public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
 	/*			Amazon amz = new Amazon();
 				Result minResult;
-                                 minResult = amz.searchResult("Dark souls ");
+                                 minResult = amz.searchResult("Dark souls III");
 				if(minResult != null)
 				{
 				System.out.println(minResult.getTitle() +"\n"+minResult.getImgUrl() +"\n"+minResult.getLinkRef() +"\n"+
@@ -36,9 +36,9 @@ public class Test {
 				else
 				{
 					System.out.println("Nessun risultato trovato");
-				}
+				}*/
 		
-*/
+
 		long start = System.currentTimeMillis();
 //		Steam steam = new Steam();
 //		ArrayList<Result> results = steam.searchResul("Dark Souls");
@@ -128,11 +128,11 @@ public class Test {
                 System.out.println("Varianza -->"+sumOfSquare/sum);
 
                */
-		/*YouTube yt = new YouTube();
+		YouTube yt = new YouTube();
 		HashMap<String, String> map = yt.searchResults("Dark Souls");
 		System.out.println(map.get(YouTube.GP));
 		System.out.println(map.get(YouTube.VD));
-		
+		/*
 		long end = System.currentTimeMillis();
 		double total = (end-start)/1000;
 		System.out.println("Tempo totale in secondi:"+total);*/
@@ -151,12 +151,12 @@ public class Test {
                   System.out.println(titles.get(i));
             }*/
           
-          ArrayList<Result> result = new ArrayList<>();
+         /* ArrayList<Result> result = new ArrayList<>();
           result = g2a.searchResults("Dark souls");
             for (int i = 0; i < result.size(); i++) {
                 System.out.println(result.get(i).getTitle());
                 System.out.println(result.get(i).getPlattformTitle());
-            }
+            }*/
 
 
 	}

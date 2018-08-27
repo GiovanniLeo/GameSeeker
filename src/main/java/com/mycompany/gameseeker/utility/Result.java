@@ -108,7 +108,22 @@ public class Result {
 
     public Result() {
     }
-    
+
+ 
+    public Result(String title, double price, String linkRef, String imgUrl,
+            String plattformTitle, String requisitiMinimi, String requisistiConsigliati,
+            String description, int feedback, String releaseDate) {
+        this.title = title;
+        this.price = price;
+        this.linkRef = linkRef;
+        this.imgUrl = imgUrl;
+        this.plattformTitle = plattformTitle;
+        this.requisitiMinimi = requisitiMinimi;
+        this.requisitiConsigliati = requisistiConsigliati;
+        this.description = description;
+        this.feedback = feedback;
+        this.releaseDate = releaseDate;
+    }
     
 
     public String getDeveloper() {

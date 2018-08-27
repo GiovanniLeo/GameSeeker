@@ -95,28 +95,31 @@ public class Amazon {
                             minResult = temp;
                         }
                         if (minResult == null && i != 0) {
-                             minResult = temp;
+                            minResult = temp;
                         }
                         if (i != 0) {
                             if (minResult.getPrice() > temp.getPrice()) {
-                                minResult = temp;                            
-                            }                          
+                                minResult = temp;
+                            }
                         }
-                        
+
                     }
                 }
 
             } //end for
-         
+
         } catch (IOException e) {
 
             e.printStackTrace();
         }
+        
+        if (minResult != null) {
+            HashMap<String, String> otherResult = getOtherInfomation(minResult);
 
-        HashMap<String, String> otherResult = getOtherInfomation(minResult);
+            minResult.setAvailability(otherResult.get(AVAILABILITY));
+            minResult.setVendor(otherResult.get(VENDOR));
 
-        minResult.setAvailability(otherResult.get(AVAILABILITY));
-        minResult.setVendor(otherResult.get(VENDOR));
+        }
 
         return minResult;
     }

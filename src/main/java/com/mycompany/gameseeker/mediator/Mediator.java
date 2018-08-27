@@ -69,6 +69,7 @@ public class Mediator {
 
     public void selectElements(String searchQuery) {
         getDataFromSites(searchQuery);
+        ArrayList<Result> results = new ArrayList<>();
 
         String loweIgTitle, lowerG2ATitle;
         int average = 0, distanceSum = 0, count = 1, distance;
@@ -83,7 +84,7 @@ public class Mediator {
                 lowerG2ATitle = g2aResults.get(j).getTitle().toLowerCase();
                 levDistance = lev.apply(loweIgTitle, lowerG2ATitle);
                 distance = levDistance.getDistance();
-                //System.out.println(loweIgTitle + "\n" + lowerG2ATitle +"\nDistance->"+distance+ "\n-----------");
+               // System.out.println(loweIgTitle + "\n" + lowerG2ATitle +"\nDistance->"+distance+ "\n-----------");
                 distanceSum += distance;
                 count++;
 
@@ -109,7 +110,7 @@ public class Mediator {
                     if (igResults.get(i).getPlattformTitle().equalsIgnoreCase(g2aResults.get(j).getPlattformTitle())) {
                         levDistance = lev.apply(loweIgTitle, lowerG2ATitle);
                         distance = levDistance.getDistance();
-                        if (distance < average) {
+                        if (distance < (average+2)) {
 
                             priceIg = igResults.get(i).getPrice();
                             priceG2A = g2aResults.get(j).getPrice();
@@ -132,9 +133,15 @@ public class Mediator {
                             feedback = igResults.get(i).getFeedback();
                             releaseDate = igResults.get(i).getReleaseDate();
                             
-                            System.out.println(igResults.get(i).getPlattformTitle() + "\n" + g2aResults.get(j).getPlattformTitle());
-                            System.out.println(loweIgTitle + "\n" + lowerG2ATitle + "\n-----------");
+                           // System.out.println(igResults.get(i).getPlattformTitle() + "\n" + g2aResults.get(j).getPlattformTitle());
+                            //System.out.println(loweIgTitle + "\n" + lowerG2ATitle + "\n-----------");
+                            results.add(new Result(title,minPrice,linkToRef,img,plattform,requisitiMinimi,requisistiConsigliati,
+                            descrizione,feedback,releaseDate));
                             
+                            System.out.println(title+"\n"+minPrice+"\n"+
+                                    linkToRef+"\n"+img+"\n"+plattform+"\n"+
+                                    requisitiMinimi+"\n"+requisistiConsigliati+"\n"+
+                            descrizione+"\n"+feedback+"\n"+releaseDate+"\n--------------");
                             igResults.remove(i);
                             g2aResults.remove(j);
                         }

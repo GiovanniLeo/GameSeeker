@@ -5,7 +5,7 @@
  */
 package com.mycompany.gameseeker.task;
 
-import com.mycompany.gameseeker.utility.Result;
+import com.mycompany.gameseeker.mongoDB.Result;
 import com.mycompany.gameseeker.wrappers.Amazon;
 import java.util.concurrent.Callable;
 

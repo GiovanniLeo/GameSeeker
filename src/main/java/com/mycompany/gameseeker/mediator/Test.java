@@ -13,5 +13,6 @@ public class Test {
     public static void main(String[] args) {
         Mediator md = new Mediator();
         md.selectElements("Dark Souls III");
+        //md.checkElements("Dark Souls III");
     }
 }

@@ -1,12 +1,13 @@
 package com.mycompany.gameseeker.wrappers;
 
+import com.mycompany.gameseeker.utility.Utility;
+import com.mycompany.gameseeker.mongoDB.Result;
 import java.io.IOException;
 import java.util.HashMap;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import com.mycompany.gameseeker.utility.*;
 import java.util.logging.Logger;
 
 public class Amazon {

@@ -1,5 +1,7 @@
 package com.mycompany.gameseeker.wrappers;
 
+import com.mycompany.gameseeker.utility.Utility;
+import com.mycompany.gameseeker.mongoDB.Result;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -9,7 +11,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import com.mycompany.gameseeker.utility.*;
 
 public class Steam 
 {

@@ -1,7 +1,12 @@
-package com.mycompany.gameseeker.utility;
+package com.mycompany.gameseeker.mongoDB;
 
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.*;
+
+@Entity
 public class Result {
-
+    @Id
+    private ObjectId id;
     private String title;
     private String imgUrl;
     private String linkRef;

@@ -1,8 +1,8 @@
 package com.mycompany.gameseeker.task;
 
+import com.mycompany.gameseeker.mongoDB.Result;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
-import com.mycompany.gameseeker.utility.*;
 import com.mycompany.gameseeker.wrappers.Steam;
 
 public class SteamTask implements Callable<ArrayList<Result>> {

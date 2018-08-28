@@ -7,7 +7,7 @@ package com.mycompany.gameseeker.wrappers;
 
 import com.mycompany.gameseeker.task.G2AAdditionalComponentTask;
 import com.mycompany.gameseeker.task.G2ATask;
-import com.mycompany.gameseeker.utility.Result;
+import com.mycompany.gameseeker.mongoDB.Result;
 import com.mycompany.gameseeker.utility.Utility;
 import java.io.IOException;
 import java.util.ArrayList;

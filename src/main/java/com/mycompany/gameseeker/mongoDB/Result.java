@@ -111,6 +111,13 @@ public class Result {
         this.publisher = publisher;
     }
 
+    public Result(String title, String linkRef) {
+        this.title = title;
+        this.linkRef = linkRef;
+    }
+    
+   
+
     public Result() {
     }
 

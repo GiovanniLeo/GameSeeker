@@ -92,9 +92,11 @@ public class G2A {
                 }
 
                 if (title.toLowerCase().contains(searchQuery.toLowerCase())) {
-                    results.add(new Result(title, map.get(IMG), linkToRef,
+                    Result res = new Result(title, map.get(IMG), linkToRef,
                             map.get(PLATTFORM),
-                            Double.parseDouble(map.get(PRICE))));
+                            Double.parseDouble(map.get(PRICE)));
+                    res.setType(Utility.G2A);
+                    results.add(res);
 
                 }
 

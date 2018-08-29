@@ -31,7 +31,7 @@ public class Mediator {
 
     private ArrayList<Result> igResults;
     private ArrayList<Result> g2aResults;
-    private HashMap<String, String> youTubeResults;
+    private ArrayList<Result> youTubeResults;
     private ArrayList<Result> everyeyeResults;
     private Result amazonResult;
     private DBResurces db;
@@ -43,7 +43,7 @@ public class Mediator {
     public Mediator() {
         igResults = new ArrayList<>();
         g2aResults = new ArrayList<>();
-        youTubeResults = new HashMap<>();
+        youTubeResults = new ArrayList<>();
         everyeyeResults = new ArrayList<>();
         results = new ArrayList<>();
         db = new DBResurces("com.mycompany.gameseeker.mongoDB",
@@ -62,7 +62,7 @@ public class Mediator {
         Future<ArrayList<Result>> fG2A = exec
                 .submit(new G2ATask(searchQuery));
 
-        Future<HashMap<String, String>> fYouTube = exec
+        Future<ArrayList<Result>> fYouTube = exec
                 .submit(new YouTubeTask(searchQuery));
         Future<Result> fAmazon = exec
                 .submit(new AmazonTask(searchQuery));
@@ -148,8 +148,11 @@ public class Mediator {
 
                                 // System.out.println(igResults.get(i).getPlattformTitle() + "\n" + g2aResults.get(j).getPlattformTitle());
                                 //System.out.println(loweIgTitle + "\n" + lowerG2ATitle + "\n-----------");
-                                results.add(new Result(title, minPrice, linkToRef, img, plattform, requisitiMinimi, requisistiConsigliati,
-                                        descrizione, feedback, releaseDate));
+                                Result res = new Result(title, minPrice, linkToRef, img, plattform,
+                                        requisitiMinimi, requisistiConsigliati,
+                                        descrizione, feedback, releaseDate);
+                                res.setType(Utility.MATCH);
+                                results.add(res);
 
                                 System.out.println(title + "\n" + minPrice + "\n"
                                         + linkToRef + "\n" + img + "\n" + plattform + "\n"
@@ -176,9 +179,7 @@ public class Mediator {
                 System.out.println("No match");
             }
 
-            for (int i = 0; i < results.size(); i++) {
-                ds.save(results.get(i));
-            }
+            saveAllData();
 
         }
 
@@ -189,22 +190,52 @@ public class Mediator {
     }
 
     public boolean checkElements(String searchQuery) {
-        
+
         if (searchQuery.toLowerCase().contains(Utility.DS)) {
             searchQuery = Utility.clearSpecialCharacterWithDigits(searchQuery);
             searchQuery = Utility.checkRomanNumber(searchQuery);
         }
-         searchQuery = searchQuery.trim();
+        searchQuery = searchQuery.trim();
         Query<Result> query = ds.find(Result.class).field("title").
                 containsIgnoreCase(searchQuery);
-        
+
         List<Result> list = query.asList();
 
-            if (list.size() > 0) {
-                results = (ArrayList) list;
-                return true;
-            }
+        if (list.size() > 0) {
+            results = (ArrayList) list;
+            return true;
+        }
         return false;
+    }
+
+    private void saveAllData() {
+        for (int i = 0; i < results.size(); i++) {
+            ds.save(results.get(i));
+        }
+
+        for (int i = 0; i < youTubeResults.size(); i++) {
+            ds.save(youTubeResults.get(i));
+        }
+        
+        for (int i = 0; i < igResults.size(); i++) {
+            ds.save(igResults.get(i));
+        }
+        
+        for (int i = 0; i < g2aResults.size(); i++) {
+            ds.save(g2aResults.get(i));
+        }
+        
+        for (int i = 0; i < everyeyeResults.size(); i++) {
+            ds.save(everyeyeResults.get(i));    
+        }
+        
+        if (amazonResult != null) {
+            ds.save(amazonResult);
+        }
+        
+        
+        
+        
     }
 
     public ArrayList<Result> getIgResults() {
@@ -215,7 +246,7 @@ public class Mediator {
         return g2aResults;
     }
 
-    public HashMap<String, String> getYouTubeResults() {
+    public ArrayList<Result> getYouTubeResults() {
         return youTubeResults;
     }
 

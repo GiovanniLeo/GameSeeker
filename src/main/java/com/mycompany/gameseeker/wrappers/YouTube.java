@@ -1,6 +1,8 @@
 package com.mycompany.gameseeker.wrappers;
 
+import com.mycompany.gameseeker.mongoDB.Result;
 import com.mycompany.gameseeker.utility.Utility;
+import java.util.ArrayList;
 import java.util.HashMap;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,10 +19,11 @@ public class YouTube {
      * @param searchQuery
      * @return
      */
-    public HashMap<String, String> searchResults(String searchQuery) {
+    public  ArrayList<Result> searchResults(String searchQuery) {
         String url = "https://www.youtube.com/results?search_query=";
         String gameUrl = url + Utility.normalizeSearchQuery(searchQuery, false) + "&sp=CAMSAhABQgQIABIA";
-        HashMap<String, String> results = new HashMap<>();
+        ArrayList<Result> results = new ArrayList<>();
+       
         try {
 
             Document doc = Jsoup.connect(gameUrl)
@@ -31,7 +34,9 @@ public class YouTube {
 
             if (mostViewVideo != null) {
                 String mostViewVideoLink = "http://www.youtube.com" + mostViewVideo.attr("href");
-                results.put(VD, mostViewVideoLink);
+                Result res = new Result(searchQuery +" "+ VD, mostViewVideoLink);
+                res.setType(Utility.YT);
+                results.add(res);
 
             }
 
@@ -46,7 +51,10 @@ public class YouTube {
 
             if (mostViewGameplay != null) {
                 String mostViewGameplayLink = "http://www.youtube.com" + mostViewGameplay.attr("href");
-                results.put(GP, mostViewGameplayLink);
+                Result res = new Result(searchQuery +" "+ GP, mostViewGameplayLink);
+                res.setType(Utility.YT);
+                results.add(res);
+                results.add(res);
             }
 
         } catch (Exception e) {

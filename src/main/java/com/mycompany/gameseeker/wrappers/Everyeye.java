@@ -72,7 +72,9 @@ public class Everyeye {
                 HashMap<String, String> map = getOtherInformation(linkToRef);
                 rewiew = map.get(REW);
                 String publisher = map.get(PUB);
-                results.add(new Result(title, rewiew, publisher));
+                Result res = new Result(title, rewiew, publisher);
+                res.setType(Utility.EVE);
+                results.add(res);
                 childNum++;
             }
 

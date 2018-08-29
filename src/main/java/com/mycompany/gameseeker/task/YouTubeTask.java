@@ -5,7 +5,9 @@
  */
 package com.mycompany.gameseeker.task;
 
+import com.mycompany.gameseeker.mongoDB.Result;
 import com.mycompany.gameseeker.wrappers.YouTube;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.Callable;
 
@@ -13,7 +15,7 @@ import java.util.concurrent.Callable;
  *
  * @author johnn
  */
-public class YouTubeTask implements Callable< HashMap<String, String>> {
+public class YouTubeTask implements Callable<ArrayList<Result>> {
 
     private String searchString;
     private YouTube yt;
@@ -25,7 +27,7 @@ public class YouTubeTask implements Callable< HashMap<String, String>> {
     
 
     @Override
-    public HashMap<String, String> call() throws Exception {
+    public ArrayList<Result> call() throws Exception {
         return yt.searchResults(searchString);
     }
 

@@ -5,6 +5,12 @@ import java.util.logging.Logger;
 public class Utility {
 
     public static final String DS = "dark souls";
+    public static final String G2A = "G2A";
+    public static final String IG = "Instant Gaming";
+    public static final String AMAZ = "Amazon";
+    public static final String YT = "You Tube";
+    public static final String EVE = "Everyeye";
+    public static final String MATCH = "Match";
     
 
     public static String clearSpecialCharacter(String string) {

@@ -1,5 +1,6 @@
 package com.mycompany.gameseeker.wrappers;
 
+import com.mycompany.gameseeker.mongoDB.Result;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -128,9 +129,9 @@ public class Test {
 
                */
 		YouTube yt = new YouTube();
-		HashMap<String, String> map = yt.searchResults("Dark Souls");
-		System.out.println(map.get(YouTube.GP));
-		System.out.println(map.get(YouTube.VD));
+		ArrayList<Result>map = yt.searchResults("Dark Souls");
+		System.out.println(map.get(0).getTitle());
+		System.out.println(map.get(1).getTitle());
 		/*
 		long end = System.currentTimeMillis();
 		double total = (end-start)/1000;

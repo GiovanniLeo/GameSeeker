@@ -91,6 +91,7 @@ public class Amazon {
                     if (titleLower.contains(searchStringLower)) {
 
                         temp = new Result(title, imgUrl, linkRef, plattformTitle, price);
+                        temp.setType(Utility.AMAZ);
 
                         if (i == 0) {
                             minResult = temp;

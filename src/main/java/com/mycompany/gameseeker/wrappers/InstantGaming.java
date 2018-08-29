@@ -84,11 +84,12 @@ public class InstantGaming {
                         continue;
                     }
                     // if (map.get(PLATTFORM).toLowerCase().equals(Steam.STEAM.toLowerCase())) {
-
-                    results.add(new Result(title, imgUrl, linkToRef, map.get(PLATTFORM),
+                    Result res = new Result(title, imgUrl, linkToRef, map.get(PLATTFORM),
                             Double.parseDouble(map.get(PRICE)), map.get(AVAILABILITY),
                             map.get(DESCRIPTION), Integer.parseInt(map.get(FEEDBACK)),
-                            map.get(RELEASEDATE), map.get(MIN), map.get(REC)));
+                            map.get(RELEASEDATE), map.get(MIN), map.get(REC));
+                    res.setType(Utility.IG);
+                    results.add(res);
                     //  }
 
                 }

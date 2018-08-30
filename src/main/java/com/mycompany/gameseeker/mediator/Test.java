@@ -12,7 +12,7 @@ package com.mycompany.gameseeker.mediator;
 public class Test {
     public static void main(String[] args) {
         Mediator md = new Mediator();
-        md.selectElements("Dark Souls III");
+        md.selectElements("FINAL FANTASY XIII");
         //md.checkElements("Dark Souls III");
     }
 }

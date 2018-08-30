@@ -84,6 +84,7 @@ public class InstantGaming {
                         continue;
                     }
                     // if (map.get(PLATTFORM).toLowerCase().equals(Steam.STEAM.toLowerCase())) {
+                    title = Utility.checkRomanNumber(title);
                     Result res = new Result(title, imgUrl, linkToRef, map.get(PLATTFORM),
                             Double.parseDouble(map.get(PRICE)), map.get(AVAILABILITY),
                             map.get(DESCRIPTION), Integer.parseInt(map.get(FEEDBACK)),

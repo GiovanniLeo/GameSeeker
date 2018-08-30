@@ -89,7 +89,7 @@ public class Amazon {
                     String titleLower = Utility.checkRomanNumber(title).toLowerCase();
                     String searchStringLower = Utility.checkRomanNumber(queryString).toLowerCase();
                     if (titleLower.contains(searchStringLower)) {
-
+                        title = Utility.checkRomanNumber(title);
                         temp = new Result(title, imgUrl, linkRef, plattformTitle, price);
                         temp.setType(Utility.AMAZ);
 

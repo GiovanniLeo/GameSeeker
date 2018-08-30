@@ -36,7 +36,7 @@ public class Mediator {
     private Result amazonResult;
     private DBResurces db;
     private Datastore ds;
-    private ArrayList<Result> results;
+    private ArrayList<Result> resultsMatch;
 
     private static ExecutorService exec = Executors.newCachedThreadPool();
 
@@ -45,7 +45,7 @@ public class Mediator {
         g2aResults = new ArrayList<>();
         youTubeResults = new ArrayList<>();
         everyeyeResults = new ArrayList<>();
-        results = new ArrayList<>();
+        resultsMatch = new ArrayList<>();
         db = new DBResurces("com.mycompany.gameseeker.mongoDB",
                 "GameSeekerDB");
         ds = db.getDatastore();
@@ -53,30 +53,62 @@ public class Mediator {
 
     private void getDataFromSites(String searchQuery) {
 
-        Future<ArrayList<Result>> fEveryeye = exec
-                .submit(new EveryeyeTask(searchQuery));
+        getDataFromAmazon(searchQuery);
+        getDataFromEveryeye(searchQuery);
+        getDataFromInstantGaming(searchQuery);
+        getDataFromYouTube(searchQuery);
+        getDataFromG2A(searchQuery);
 
+    }
+
+    private void getDataFromInstantGaming(String searchQuery) {
         Future<ArrayList<Result>> fInstantGaming = exec
                 .submit(new InstantGamingTask(searchQuery));
-
-        Future<ArrayList<Result>> fG2A = exec
-                .submit(new G2ATask(searchQuery));
-
-        Future<ArrayList<Result>> fYouTube = exec
-                .submit(new YouTubeTask(searchQuery));
-        Future<Result> fAmazon = exec
-                .submit(new AmazonTask(searchQuery));
-
         try {
             igResults = fInstantGaming.get();
-            g2aResults = fG2A.get();
-            youTubeResults = fYouTube.get();
-            everyeyeResults = fEveryeye.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getDataFromAmazon(String searchQuery) {
+        Future<Result> fAmazon = exec
+                .submit(new AmazonTask(searchQuery));
+        try {
             amazonResult = fAmazon.get();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    private void getDataFromYouTube(String searchQuery) {
+        Future<ArrayList<Result>> fYouTube = exec
+                .submit(new YouTubeTask(searchQuery));
+        try {
+            youTubeResults = fYouTube.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getDataFromG2A(String searchQuery) {
+        Future<ArrayList<Result>> fG2A = exec
+                .submit(new G2ATask(searchQuery));
+        try {
+            g2aResults = fG2A.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getDataFromEveryeye(String searchQuery) {
+        Future<ArrayList<Result>> fEveryeye = exec
+                .submit(new EveryeyeTask(searchQuery));
+        try {
+            everyeyeResults = fEveryeye.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void selectElements(String searchQuery) {
@@ -113,6 +145,10 @@ public class Mediator {
             int feedback;
             for (int i = 0; i < igResults.size(); i++) {
                 for (int j = 0; j < g2aResults.size(); j++) {
+
+                    if (igResults.size() == 0 || g2aResults.size() == 0) {
+                        break;
+                    }
 
                     loweIgTitle = igResults.get(i).getTitle().toLowerCase();
                     lowerG2ATitle = g2aResults.get(j).getTitle().toLowerCase();
@@ -152,7 +188,7 @@ public class Mediator {
                                         requisitiMinimi, requisistiConsigliati,
                                         descrizione, feedback, releaseDate);
                                 res.setType(Utility.MATCH);
-                                results.add(res);
+                                resultsMatch.add(res);
 
                                 System.out.println(title + "\n" + minPrice + "\n"
                                         + linkToRef + "\n" + img + "\n" + plattform + "\n"
@@ -178,64 +214,114 @@ public class Mediator {
                 }
                 System.out.println("No match");
             }
-
+            System.out.println("Prima di salvare");
             saveAllData();
+            System.out.println("Salvati");
 
         }
-
-        for (int i = 0; i < results.size(); i++) {
-            System.out.println(results.get(i).getTitle());
-        }
-
+        debug();
     }
 
     public boolean checkElements(String searchQuery) {
 
-        if (searchQuery.toLowerCase().contains(Utility.DS)) {
-            searchQuery = Utility.clearSpecialCharacterWithDigits(searchQuery);
-            searchQuery = Utility.checkRomanNumber(searchQuery);
-        }
+        searchQuery = Utility.checkRomanNumber(searchQuery);
+        System.out.println(searchQuery);
         searchQuery = searchQuery.trim();
         Query<Result> query = ds.find(Result.class).field("title").
                 containsIgnoreCase(searchQuery);
 
         List<Result> list = query.asList();
+        List<Result> dbResults = new ArrayList<>();
 
         if (list.size() > 0) {
-            results = (ArrayList) list;
+
+            dbResults = retriveDataFromDB(searchQuery, Utility.MATCH).asList();
+
+            if (dbResults.size() > 0) {
+                resultsMatch = (ArrayList) dbResults;
+            } else {
+                getDataFromSites(searchQuery);
+            }
+
+            dbResults = retriveDataFromDB(searchQuery, Utility.YT).asList();
+
+            if (dbResults.size() > 0) {
+                youTubeResults = (ArrayList) dbResults;
+            } else {
+                getDataFromYouTube(searchQuery);
+            }
+
+            dbResults = retriveDataFromDB(searchQuery, Utility.AMAZ).asList();
+
+            if (dbResults.size() > 0) {
+                amazonResult = dbResults.get(0);
+            } else {
+                getDataFromAmazon(searchQuery);
+            }
+
+            dbResults = retriveDataFromDB(searchQuery, Utility.EVE).asList();
+
+            if (dbResults.size() > 0) {
+                everyeyeResults = (ArrayList) dbResults;
+            } else {
+                getDataFromEveryeye(searchQuery);
+            }
+
+            dbResults = retriveDataFromDB(searchQuery, Utility.IG).asList();
+
+            if (dbResults.size() > 0) {
+                igResults = (ArrayList) dbResults;
+            } else {
+                getDataFromInstantGaming(searchQuery);
+            }
+
+            dbResults = retriveDataFromDB(searchQuery, Utility.G2A).asList();
+
+            if (dbResults.size() > 0) {
+                g2aResults = (ArrayList) dbResults;
+            } else {
+                getDataFromG2A(searchQuery);
+            }
+           // debug();
+            //resultsMatch = (ArrayList) list;
             return true;
         }
         return false;
     }
 
     private void saveAllData() {
-        for (int i = 0; i < results.size(); i++) {
-            ds.save(results.get(i));
+        for (int i = 0; i < resultsMatch.size(); i++) {
+            ds.save(resultsMatch.get(i));
         }
 
         for (int i = 0; i < youTubeResults.size(); i++) {
             ds.save(youTubeResults.get(i));
         }
-        
+
         for (int i = 0; i < igResults.size(); i++) {
             ds.save(igResults.get(i));
         }
-        
+
         for (int i = 0; i < g2aResults.size(); i++) {
             ds.save(g2aResults.get(i));
         }
-        
+
         for (int i = 0; i < everyeyeResults.size(); i++) {
-            ds.save(everyeyeResults.get(i));    
+            ds.save(everyeyeResults.get(i));
         }
-        
+
         if (amazonResult != null) {
             ds.save(amazonResult);
         }
-        
-        
-        
-        
+
+    }
+
+    private Query retriveDataFromDB(String searchQuery, String type) {
+        searchQuery = searchQuery.trim();
+        Query<Result> query = ds.find(Result.class)
+                .field("title").containsIgnoreCase(searchQuery)
+                .field("type").equalIgnoreCase(type);
+        return query;
     }
 
     public ArrayList<Result> getIgResults() {
@@ -256,6 +342,35 @@ public class Mediator {
 
     public Result getAmazonResult() {
         return amazonResult;
+    }
+
+    private void debug() {
+        for (int i = 0; i < resultsMatch.size(); i++) {
+            System.out.println(resultsMatch.get(i).getTitle() + "--->" + resultsMatch.get(i).getType());
+        }
+
+        for (int i = 0; i < igResults.size(); i++) {
+            System.out.println(igResults.get(i).getTitle() + "--->" + igResults.get(i).getType());
+        }
+        if (g2aResults != null) {
+            
+            for (int i = 0; i < g2aResults.size(); i++) {
+                System.out.println(g2aResults.get(i).getTitle() + "--->" + g2aResults.get(i).getType());
+            }
+        }
+
+        for (int i = 0; i < everyeyeResults.size(); i++) {
+            System.out.println(everyeyeResults.get(i).getTitle() + "--->" + everyeyeResults.get(i).getType());
+        }
+
+        for (int i = 0; i < youTubeResults.size(); i++) {
+            System.out.println(youTubeResults.get(i).getTitle() + "--->" + youTubeResults.get(i).getType());
+        }
+
+        if (amazonResult != null) {
+            System.out.println(amazonResult.getTitle() + "--->" + amazonResult.getType());
+        }
+
     }
 
 }

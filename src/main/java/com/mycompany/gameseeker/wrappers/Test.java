@@ -129,7 +129,7 @@ public class Test {
 
                */
 		YouTube yt = new YouTube();
-		ArrayList<Result>map = yt.searchResults("Dark Souls");
+		ArrayList<Result>map = yt.searchResults("Dark Souls III");
 		System.out.println(map.get(0).getTitle());
 		System.out.println(map.get(1).getTitle());
 		/*

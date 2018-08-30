@@ -34,7 +34,7 @@ public class YouTube {
 
             if (mostViewVideo != null) {
                 String mostViewVideoLink = "http://www.youtube.com" + mostViewVideo.attr("href");
-                Result res = new Result(searchQuery +" "+ VD, mostViewVideoLink);
+                Result res = new Result(Utility.checkRomanNumber(searchQuery) +" "+ VD, mostViewVideoLink);
                 res.setType(Utility.YT);
                 results.add(res);
 
@@ -51,9 +51,8 @@ public class YouTube {
 
             if (mostViewGameplay != null) {
                 String mostViewGameplayLink = "http://www.youtube.com" + mostViewGameplay.attr("href");
-                Result res = new Result(searchQuery +" "+ GP, mostViewGameplayLink);
+                Result res = new Result(Utility.checkRomanNumber(searchQuery) +" "+ GP, mostViewGameplayLink);
                 res.setType(Utility.YT);
-                results.add(res);
                 results.add(res);
             }
 

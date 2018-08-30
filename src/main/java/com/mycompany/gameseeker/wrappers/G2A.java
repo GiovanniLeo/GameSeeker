@@ -92,6 +92,7 @@ public class G2A {
                 }
 
                 if (title.toLowerCase().contains(searchQuery.toLowerCase())) {
+                    title = Utility.checkRomanNumber(title);
                     Result res = new Result(title, map.get(IMG), linkToRef,
                             map.get(PLATTFORM),
                             Double.parseDouble(map.get(PRICE)));

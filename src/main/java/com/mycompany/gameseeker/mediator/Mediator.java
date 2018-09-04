@@ -344,6 +344,11 @@ public class Mediator {
         return amazonResult;
     }
 
+    public ArrayList<Result> getResultsMatch() {
+        return resultsMatch;
+    }
+    
+
     private void debug() {
         for (int i = 0; i < resultsMatch.size(); i++) {
             System.out.println(resultsMatch.get(i).getTitle() + "--->" + resultsMatch.get(i).getType());

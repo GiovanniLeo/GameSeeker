@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.mycompany.gameseeker.mediator.Mediator;
+import com.mycompany.gameseeker.mongoDB.Result;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,26 +32,6 @@ public class MinPriceTest extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String title = request.getParameter("titolo");
-        Mediator md = new Mediator();
-        md.selectElements(title);
-        //ottengo l'oggetto con le info
-        //istanzio un bean
-        
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-        /*
-        HttpSession session = request.getSession(true)
-        session.setAttribute("game",game);
-        forward(request,response,"/NameJsp.jsp");
-     
-         */
-        }
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -62,7 +44,24 @@ public class MinPriceTest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        ArrayList<Result> resultMatching = new ArrayList<>();
+        ArrayList<Result> resultIg = new ArrayList<>();
+        ArrayList<Result> resultG2a = new ArrayList<>();
+        ArrayList<Result> resultYoutube = new ArrayList<>();
+        ArrayList<Result> resultEveryEye = new ArrayList<>();
+        Result resultAmazon;
+
+        String titolo = request.getParameter("titolo");
+        Mediator md = new Mediator();
+        md.selectElements(titolo);
+        resultMatching = md.getResultsMatch();
+        resultIg = md.getIgResults();
+        resultG2a = md.getG2aResults();
+        resultYoutube = md.getYouTubeResults();
+        resultEveryEye = md.getEveryeyeResults();
+        resultAmazon = md.getAmazonResult();
+      
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -71,7 +70,13 @@ public class MinPriceTest extends HttpServlet {
             out.println("<title>Servlet MinPriceTest</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MinPriceTest at " + request.getContextPath() + "</h1>");
+            for (int i = 0; i < resultMatching.size(); i++) {
+                out.println("<h1>Giochi " + resultMatching.get(i).getTitle() + "</h1>");
+                out.println("<a href=' " + resultMatching.get(i).getLinkRef() + "'> pene</a>");
+                out.println("<br/>");
+                out.println("<img src=" + resultMatching.get(i).getImgUrl() +" style='height: 100px;width: 100px' />");
+            }
+            out.println("<h1>Finito</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -88,7 +93,7 @@ public class MinPriceTest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     /**

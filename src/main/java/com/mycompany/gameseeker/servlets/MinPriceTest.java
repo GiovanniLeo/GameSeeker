@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.mycompany.gameseeker.mediator.Mediator;
 import com.mycompany.gameseeker.mongoDB.Result;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -55,6 +57,7 @@ public class MinPriceTest extends HttpServlet {
         String titolo = request.getParameter("titolo");
         Mediator md = new Mediator();
         md.selectElements(titolo);
+        
         resultMatching = md.getResultsMatch();
         resultIg = md.getIgResults();
         resultG2a = md.getG2aResults();
@@ -62,24 +65,13 @@ public class MinPriceTest extends HttpServlet {
         resultEveryEye = md.getEveryeyeResults();
         resultAmazon = md.getAmazonResult();
       
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MinPriceTest</title>");
-            out.println("</head>");
-            out.println("<body>");
-            for (int i = 0; i < resultMatching.size(); i++) {
-                out.println("<h1>Giochi " + resultMatching.get(i).getTitle() + "</h1>");
-                out.println("<a href=' " + resultMatching.get(i).getLinkRef() + "'> pene</a>");
-                out.println("<br/>");
-                out.println("<img src=" + resultMatching.get(i).getImgUrl() +" style='height: 100px;width: 100px' />");
-            }
-            out.println("<h1>Finito</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        ServletContext context = getServletContext();
+        request.setAttribute("resultMatching", resultMatching);
+        RequestDispatcher dispatcher = context.getRequestDispatcher("/ResultQuery.jsp");
+        dispatcher.forward(request,response);
+        
+        
+    
     }
 
     /**

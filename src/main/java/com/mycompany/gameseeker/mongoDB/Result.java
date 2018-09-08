@@ -136,8 +136,11 @@ public class Result {
         this.feedback = feedback;
         this.releaseDate = releaseDate;
     }
-    
 
+    public ObjectId getId() {
+        return id;
+    }
+    
     public String getDeveloper() {
         return developer;
     }

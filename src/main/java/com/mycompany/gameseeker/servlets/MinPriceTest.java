@@ -57,21 +57,23 @@ public class MinPriceTest extends HttpServlet {
         String titolo = request.getParameter("titolo");
         Mediator md = new Mediator();
         md.selectElements(titolo);
-        
+
         resultMatching = md.getResultsMatch();
         resultIg = md.getIgResults();
         resultG2a = md.getG2aResults();
         resultYoutube = md.getYouTubeResults();
         resultEveryEye = md.getEveryeyeResults();
         resultAmazon = md.getAmazonResult();
-      
+
+        
         ServletContext context = getServletContext();
         request.setAttribute("resultMatching", resultMatching);
-        RequestDispatcher dispatcher = context.getRequestDispatcher("/ResultQuery.jsp");
-        dispatcher.forward(request,response);
+        request.setAttribute("resultIg", resultIg);
+        request.setAttribute("resultG2a", resultG2a);
         
-        
-    
+        RequestDispatcher dispatcher = context.getRequestDispatcher("/ResultsQuery.jsp");
+        dispatcher.forward(request, response);
+
     }
 
     /**

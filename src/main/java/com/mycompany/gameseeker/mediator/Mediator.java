@@ -20,6 +20,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import org.apache.commons.text.similarity.LevenshteinDetailedDistance;
 import org.apache.commons.text.similarity.LevenshteinResults;
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.Query;
 
@@ -214,11 +215,11 @@ public class Mediator {
                 }
                 System.out.println("No match");
             }
-            System.out.println("Prima di salvare");
-            saveAllData();
-            System.out.println("Salvati");
 
         }
+        System.out.println("Prima di salvare");
+        saveAllData();
+        System.out.println("Salvati");
         debug();
     }
 
@@ -282,7 +283,7 @@ public class Mediator {
             } else {
                 getDataFromG2A(searchQuery);
             }
-           // debug();
+            // debug();
             //resultsMatch = (ArrayList) list;
             return true;
         }
@@ -323,6 +324,13 @@ public class Mediator {
                 .field("type").equalIgnoreCase(type);
         return query;
     }
+    
+    public Result getElementByIdFromDB(String id)
+    {
+        ObjectId idObj = new ObjectId(id);
+        Result res = ds.get(Result.class,idObj);
+        return res;
+    }
 
     public ArrayList<Result> getIgResults() {
         return igResults;
@@ -358,7 +366,7 @@ public class Mediator {
             System.out.println(igResults.get(i).getTitle() + "--->" + igResults.get(i).getType());
         }
         if (g2aResults != null) {
-            
+
             for (int i = 0; i < g2aResults.size(); i++) {
                 System.out.println(g2aResults.get(i).getTitle() + "--->" + g2aResults.get(i).getType());
             }

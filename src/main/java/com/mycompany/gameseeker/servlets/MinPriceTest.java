@@ -65,11 +65,15 @@ public class MinPriceTest extends HttpServlet {
         resultEveryEye = md.getEveryeyeResults();
         resultAmazon = md.getAmazonResult();
 
-        
+        for(int i=0;i<resultYoutube.size();i++)
+        {
+            System.out.println(""+resultYoutube.get(i).getLinkRef());
+        }
         ServletContext context = getServletContext();
         request.setAttribute("resultMatching", resultMatching);
         request.setAttribute("resultIg", resultIg);
         request.setAttribute("resultG2a", resultG2a);
+        request.setAttribute("resultYoutube", resultYoutube);
         
         RequestDispatcher dispatcher = context.getRequestDispatcher("/ResultsQuery.jsp");
         dispatcher.forward(request, response);

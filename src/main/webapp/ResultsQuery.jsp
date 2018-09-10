@@ -128,63 +128,68 @@
                                             ArrayList<Result> resultMatching = (ArrayList<Result>) request.getAttribute("resultMatching");
                                             ArrayList<Result> resultIg = (ArrayList<Result>) request.getAttribute("resultIg");
                                             ArrayList<Result> resultG2a = (ArrayList<Result>) request.getAttribute("resultG2a");
+                                            ArrayList<Result> resultYoutube = (ArrayList<Result>) request.getAttribute("resultYoutube");
 
                                         %>
+
                                         <div class="tab-content gallery">
                                             <div class="tab-pane active" id="studio">
 
                                                 <% PrintWriter outing = response.getWriter();
                                                     int half = (resultMatching.size() / 2);
-                                                     boolean flag = false;
+                                                    boolean flag = false;
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
 
                                                     for (int i = 0; i < resultMatching.size(); i++) {
-                                                        if (i == half || i==half+1 && flag==false) {
+                                                        if (i == half || i == half + 1 && flag == false) {
                                                             out.println("</div>");
-                                                            out.println("<div class='col-md-6'>");                                                          
-                                                            flag = true;                                                           
+                                                            out.println("<div class='col-md-6'>");
+                                                            flag = true;
                                                         }
                                                         out.println("<img src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' />");
-
+                                                        out.println("Prezzo: "+resultMatching.get(i).getPrice());
+                                                        out.println("</br>");
+                                                        out.println("<a href=" + resultMatching.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
+                                                        
+                                                        out.println("<hr>");
                                                     }
                                                     out.println("</div>");
                                                     out.println("</div>");
-                                                    
+
                                                 %>
 
                                             </div>
                                             <div class="tab-pane text-center" id="work">
-                                                <%  
-                                                    System.out.println(""+resultIg.size());
-                                                    System.out.println(""+resultG2a.size());
+                                                <%                                                    System.out.println("" + resultIg.size());
+                                                    System.out.println("" + resultG2a.size());
                                                     flag = false;
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
                                                     half = (resultIg.size() / 2);
                                                     for (int i = 0; i < resultIg.size(); i++) {
-                                                        if (i == half || i==half+1 && flag==false) {
+                                                        if (i == half || i == half + 1 && flag == false) {
                                                             out.println("</div>");
-                                                            out.println("<div class='col-md-6'>");                                                          
-                                                            flag = true;                                                           
+                                                            out.println("<div class='col-md-6'>");
+                                                            flag = true;
                                                         }
                                                         out.println("<img src=" + resultIg.get(i).getImgUrl() + " class='img-rounded' />");
-
+                                                        out.println("<hr>");
                                                     }
                                                     out.println("</div>");
                                                     out.println("</div>");
-                                                    
+
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
                                                     half = (resultG2a.size() / 2);
                                                     for (int i = 0; i < resultG2a.size(); i++) {
-                                                        if (i == half || i==half+1 && flag==false) {
+                                                        if (i == half || i == half + 1 && flag == false) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
                                                             flag = true;
                                                         }
                                                         out.println("<img src=" + resultG2a.get(i).getImgUrl() + " class='img-rounded' />");
-
+                                                        out.println("<hr>");
                                                     }
 
                                                     out.println("</div>");
@@ -193,20 +198,17 @@
                                             </div>
                                             <div class="tab-pane text-center" id="shows">
                                                 <%
+                                                    
+                                                  
                                                     out.println("<div class='row'>");
-                                                    out.println("<div class='col-md-6'>");
-                                                    half = (resultMatching.size() / 2);
-                                                    for (int i = 0; i < resultMatching.size(); i++) {
-                                                        if (i == half) {
-                                                            out.println("</div>");
-                                                            out.println("<div class='col-md-6'>");
-                                                        }
-                                                        out.println("<img src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' />");
-                                                        i++;
-                                                        out.println("<img src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' />");
+                                                    out.println("<div class='col-md-12'>");
 
+                                                    for (int i = 0; i < resultYoutube.size(); i++) {
+                                                           
+                                                        String x = resultYoutube.get(i).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(i).getLinkRef().substring(31, resultYoutube.get(i).getLinkRef().length());
+                                                        out.println("<iframe width='550' height='350' src="+x+" frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
+                                                        out.println("<hr>");
                                                     }
-
                                                     out.println("</div>");
                                                     out.println("</div>");
 

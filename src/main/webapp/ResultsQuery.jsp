@@ -147,11 +147,13 @@
                                                             out.println("<div class='col-md-6'>");
                                                             flag = true;
                                                         }
-                                                        out.println("<img src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' />");
+                                                        out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
+                                                        out.println("<input type='hidden' name='id' value='"+resultMatching.get(i).getId()+"'>");
+                                                        out.println("<input type='image' src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' width='250' height='300' />");
                                                         out.println("Prezzo: "+resultMatching.get(i).getPrice());
                                                         out.println("</br>");
                                                         out.println("<a href=" + resultMatching.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
-                                                        
+                                                        out.println("</form>");
                                                         out.println("<hr>");
                                                     }
                                                     out.println("</div>");
@@ -173,7 +175,7 @@
                                                             out.println("<div class='col-md-6'>");
                                                             flag = true;
                                                         }
-                                                        out.println("<img src=" + resultIg.get(i).getImgUrl() + " class='img-rounded' />");
+                                                        out.println("<img src=" + resultIg.get(i).getImgUrl() + " class='img-rounded' width='300' height='350' />");
                                                         out.println("<hr>");
                                                     }
                                                     out.println("</div>");
@@ -188,12 +190,13 @@
                                                             out.println("<div class='col-md-6'>");
                                                             flag = true;
                                                         }
-                                                        out.println("<img src=" + resultG2a.get(i).getImgUrl() + " class='img-rounded' />");
+                                                        out.println("<img src=" + resultG2a.get(i).getImgUrl() + " class='img-rounded' width='300' height='350' />");
                                                         out.println("<hr>");
                                                     }
 
                                                     out.println("</div>");
                                                     out.println("</div>");
+                                                    out.println(""+resultIg.size());
                                                 %>
                                             </div>
                                             <div class="tab-pane text-center" id="shows">

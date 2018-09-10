@@ -12,18 +12,18 @@ public class Result {
     private String linkRef;
     private String plattformTitle;
     private double price;
-    private String availability;
-    private String vendor;
+    private String availability; //no
+    private String vendor;//no
     private String description;
-    private String category;
+    private String category;//no
     private int feedback;
     private String releaseDate;
-    private String developer;
+    private String developer;//no
     private String requisitiMinimi;
     private String requisitiConsigliati;
-    private String rewiew;
-    private String publisher;
-    private String type;
+    private String rewiew; //si in un altro tab
+    private String publisher; //si in quello di prima
+    private String type;//no
 
     /**
      * Costruttore per i risltati di amazon;

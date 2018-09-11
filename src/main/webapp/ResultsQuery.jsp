@@ -26,11 +26,15 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- CSS Files -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="assets/css/material-kit.css" rel="stylesheet"/>
-
+<style>
+.checked {
+    color: orange;
+}
+</style>
     </head>
 
     <body class="profile-page">
@@ -78,7 +82,14 @@
                 </div>
             </div>
         </nav>
+                                        <%
+                                            ArrayList<Result> resultMatching = (ArrayList<Result>) request.getAttribute("resultMatching");
+                                            ArrayList<Result> resultIg = (ArrayList<Result>) request.getAttribute("resultIg");
+                                            ArrayList<Result> resultG2a = (ArrayList<Result>) request.getAttribute("resultG2a");
+                                            ArrayList<Result> resultYoutube = (ArrayList<Result>) request.getAttribute("resultYoutube");
+                                            ArrayList<Result> resultEveryEye = (ArrayList<Result>) request.getAttribute("resultEveryEye");
 
+                                        %>
         <div class="wrapper">
             <div class="header header-filter" style="background-image: url('Immagini/gaming.jpg');"></div>
 
@@ -91,8 +102,8 @@
                                     <img src="assets/img/christian.jpg" alt="Circle Image" class="img-circle img-responsive img-raised">
                                 </div>
                                 <div class="name">
-                                    <h3 class="title">Christian Louboutin</h3>
-                                    <h6>Designer</h6>
+                                    <h3 class="title">Games</h3>
+               
                                 </div>
                             </div>
                         </div>
@@ -107,36 +118,36 @@
                                         <ul class="nav nav-pills" role="tablist">
                                             <li class="active">
                                                 <a href="#studio" role="tab" data-toggle="tab">
-                                                    <i class="material-icons">camera</i>
+                                                    <i class="material-icons">star</i>
                                                     Minor prezzo
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#work" role="tab" data-toggle="tab">
-                                                    <i class="material-icons">palette</i>
+                                                    <i class="material-icons">public</i>
                                                     Tutte le fonti
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#shows" role="tab" data-toggle="tab">
-                                                    <i class="material-icons">favorite</i>
+                                                    <i class="material-icons">live_tv</i>
                                                     Watch now
                                                 </a>
                                             </li>
+                                             <li>
+                                                <a href="#reviews" role="tab" data-toggle="tab">
+                                                    <i class="material-icons">sms</i>
+                                                    Reviews
+                                                </a>
+                                            </li>                                           
                                         </ul>
-                                        <%
-                                            ArrayList<Result> resultMatching = (ArrayList<Result>) request.getAttribute("resultMatching");
-                                            ArrayList<Result> resultIg = (ArrayList<Result>) request.getAttribute("resultIg");
-                                            ArrayList<Result> resultG2a = (ArrayList<Result>) request.getAttribute("resultG2a");
-                                            ArrayList<Result> resultYoutube = (ArrayList<Result>) request.getAttribute("resultYoutube");
-
-                                        %>
 
                                         <div class="tab-content gallery">
                                             <div class="tab-pane active" id="studio">
 
-                                                <% PrintWriter outing = response.getWriter();
+                                                <% 
                                                     int half = (resultMatching.size() / 2);
+                                                    int rating;
                                                     boolean flag = false;
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
@@ -147,10 +158,20 @@
                                                             out.println("<div class='col-md-6'>");
                                                             flag = true;
                                                         }
+                                                        rating = resultMatching.get(i).getFeedback()/100;
                                                         out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
                                                         out.println("<input type='hidden' name='id' value='"+resultMatching.get(i).getId()+"'>");
-                                                        out.println("<input type='image' src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' width='250' height='300' />");
+                                                        out.println("<input type='image' src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");
                                                         out.println("Prezzo: "+resultMatching.get(i).getPrice());
+                                                        out.println("<br>");
+                                                        for(int j=0;j<rating;j++)
+                                                        {
+                                                            out.println("<span class='fa fa-star checked'></span>");
+                                                        }
+                                                        for(int j=rating;j<5;j++)
+                                                        {
+                                                            out.println("<span class='fa fa-star'></span>");
+                                                        }
                                                         out.println("</br>");
                                                         out.println("<a href=" + resultMatching.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
                                                         out.println("</form>");
@@ -163,20 +184,29 @@
 
                                             </div>
                                             <div class="tab-pane text-center" id="work">
-                                                <%                                                    System.out.println("" + resultIg.size());
+                                                <%  
+                                                    System.out.println("" + resultIg.size());
                                                     System.out.println("" + resultG2a.size());
                                                     flag = false;
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
                                                     half = (resultIg.size() / 2);
+                                                    int resto = (resultIg.size()% 2);
+                                                    if(resto==1)half++;
                                                     for (int i = 0; i < resultIg.size(); i++) {
-                                                        if (i == half || i == half + 1 && flag == false) {
+                                                        if (i == half ) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
-                                                            flag = true;
+                                                           
                                                         }
                                                         out.println("<img src=" + resultIg.get(i).getImgUrl() + " class='img-rounded' width='300' height='350' />");
                                                         out.println("<hr>");
+                                                    }
+                                                    int k=0;
+                                                    if(resto==1)
+                                                    {   out.println("<img src=" + resultG2a.get(0).getImgUrl() + " class='img-rounded' width='300' height='350' />");
+                                                        out.println("<hr>");
+                                                        k=1;
                                                     }
                                                     out.println("</div>");
                                                     out.println("</div>");
@@ -184,19 +214,23 @@
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
                                                     half = (resultG2a.size() / 2);
-                                                    for (int i = 0; i < resultG2a.size(); i++) {
-                                                        if (i == half || i == half + 1 && flag == false) {
+                                                    resto = (resultIg.size()% 2);
+                                                    if(resto==1)half++;
+                                                    
+                                                    for (int i = k; i < resultG2a.size(); i++) {
+                                                        if (i == half ) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
-                                                            flag = true;
+                                                           
                                                         }
                                                         out.println("<img src=" + resultG2a.get(i).getImgUrl() + " class='img-rounded' width='300' height='350' />");
+                                                    
                                                         out.println("<hr>");
                                                     }
 
                                                     out.println("</div>");
                                                     out.println("</div>");
-                                                    out.println(""+resultIg.size());
+                                                   
                                                 %>
                                             </div>
                                             <div class="tab-pane text-center" id="shows">
@@ -210,6 +244,25 @@
                                                            
                                                         String x = resultYoutube.get(i).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(i).getLinkRef().substring(31, resultYoutube.get(i).getLinkRef().length());
                                                         out.println("<iframe width='550' height='350' src="+x+" frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
+                                                        out.println("<hr>");
+                                                    }
+                                                    out.println("</div>");
+                                                    out.println("</div>");
+
+                                                %>
+                                            </div>
+                                            <div class="tab-pane text-center" id="reviews">
+                                                <%
+                                                                                                      
+                                                    out.println("<div class='row'>");
+                                                    out.println("<div class='col-md-12'>");
+
+                                                    for (int i = 0; i < resultEveryEye.size(); i++) {
+                                                           
+                                                        out.println("<p>");
+                                                        out.println(resultEveryEye.get(i).getRewiew().substring(0, 1000));
+                                                        out.println(resultEveryEye.get(i).getPublisher());
+                                                        out.println("</p>"); 
                                                         out.println("<hr>");
                                                     }
                                                     out.println("</div>");

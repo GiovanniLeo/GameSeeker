@@ -159,9 +159,17 @@
                                                             flag = true;
                                                         }
                                                         rating = resultMatching.get(i).getFeedback()/100;
+                                                        
+                                                   
+                                                        out.println("<b>"+resultMatching.get(i).getTitle()+"</b>");
+                                                        out.println("<br>");
+                                                        out.println("<br>");
+                                                 
+                                                        
                                                         out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
                                                         out.println("<input type='hidden' name='id' value='"+resultMatching.get(i).getId()+"'>");
-                                                        out.println("<input type='image' src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");
+                                                        out.println("<input type='image' src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");                                                      
+                                                        
                                                         out.println("Prezzo: "+resultMatching.get(i).getPrice());
                                                         out.println("<br>");
                                                         for(int j=0;j<rating;j++)
@@ -199,13 +207,58 @@
                                                             out.println("<div class='col-md-6'>");
                                                            
                                                         }
-                                                        out.println("<img src=" + resultIg.get(i).getImgUrl() + " class='img-rounded' width='300' height='350' />");
+                                                        rating = resultMatching.get(i).getFeedback()/100;
+                                                        
+                                                   
+                                                        out.println("<b>"+resultIg.get(i).getTitle()+"</b>");
+                                                        out.println("<br>");
+                                                        out.println("<br>");
+                                                        
+                                                        out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
+                                                        out.println("<input type='hidden' name='id' value='"+resultIg.get(i).getId()+"'>");
+                                                        out.println("<input type='image' src=" + resultIg.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");
+                                                        out.println("Prezzo: "+resultIg.get(i).getPrice());
+                                                        out.println("</br>");
+                                                        for(int j=0;j<rating;j++)
+                                                        {
+                                                            out.println("<span class='fa fa-star checked'></span>");
+                                                        }
+                                                        for(int j=rating;j<5;j++)
+                                                        {
+                                                            out.println("<span class='fa fa-star'></span>");
+                                                        }
+                                                        out.println("</br>");
+                                                        out.println("<a href=" + resultIg.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
+                                                        out.println("</form>");
                                                         out.println("<hr>");
                                                     }
                                                     int k=0;
                                                     if(resto==1)
-                                                    {   out.println("<img src=" + resultG2a.get(0).getImgUrl() + " class='img-rounded' width='300' height='350' />");
-                                                        out.println("<hr>");
+                                                    {   
+                                                        rating = resultG2a.get(0).getFeedback()/100;
+                                                        
+                                                   
+                                                        out.println("<b>"+resultG2a.get(0).getTitle()+"</b>");
+                                                        out.println("<br>");
+                                                        out.println("<br>");
+                                                        
+                                                        out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
+                                                        out.println("<input type='hidden' name='id' value='"+resultG2a.get(0).getId()+"'>");
+                                                        out.println("<input type='image' src=" + resultG2a.get(0).getImgUrl() + " class='img-rounded' width='250' height='350' />");
+                                                        out.println("Prezzo: "+resultG2a.get(0).getPrice());
+                                                        out.println("<br>");
+                                                        for(int j=0;j<rating;j++)
+                                                        {
+                                                            out.println("<span class='fa fa-star checked'></span>");
+                                                        }
+                                                        for(int j=rating;j<5;j++)
+                                                        {
+                                                            out.println("<span class='fa fa-star'></span>");
+                                                        }
+                                                        out.println("</br>");
+                                                        out.println("<a href=" + resultG2a.get(0).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
+                                                        out.println("</form>");
+                                                        out.println("<hr>");                                                        
                                                         k=1;
                                                     }
                                                     out.println("</div>");
@@ -223,9 +276,32 @@
                                                             out.println("<div class='col-md-6'>");
                                                            
                                                         }
-                                                        out.println("<img src=" + resultG2a.get(i).getImgUrl() + " class='img-rounded' width='300' height='350' />");
-                                                    
-                                                        out.println("<hr>");
+                                                        rating = resultG2a.get(i).getFeedback()/100;
+                                                        
+                                                   
+                                                        out.println("<b>"+resultG2a.get(i).getTitle()+"</b>");
+                                                        out.println("<br>");
+                                                        out.println("<br>");
+                                                 
+                                                        
+                                                        out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
+                                                        out.println("<input type='hidden' name='id' value='"+resultG2a.get(i).getId()+"'>");
+                                                        out.println("<input type='image' src=" + resultG2a.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");                                                      
+                                                        
+                                                        out.println("Prezzo: "+resultG2a.get(i).getPrice());
+                                                        out.println("<br>");
+                                                        for(int j=0;j<rating;j++)
+                                                        {
+                                                            out.println("<span class='fa fa-star checked'></span>");
+                                                        }
+                                                        for(int j=rating;j<5;j++)
+                                                        {
+                                                            out.println("<span class='fa fa-star'></span>");
+                                                        }
+                                                        out.println("</br>");
+                                                        out.println("<a href=" + resultG2a.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
+                                                        out.println("</form>");
+                                                        out.println("<hr>");                                                       
                                                     }
 
                                                     out.println("</div>");
@@ -240,14 +316,17 @@
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-12'>");
 
-                                                    for (int i = 0; i < resultYoutube.size(); i++) {
-                                                           
-                                                        String x = resultYoutube.get(i).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(i).getLinkRef().substring(31, resultYoutube.get(i).getLinkRef().length());
+                                                    
+                                                        out.println("<h6>Trailer</h6>");  
+                                                        String x = resultYoutube.get(0).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(0).getLinkRef().substring(31, resultYoutube.get(0).getLinkRef().length());
                                                         out.println("<iframe width='550' height='350' src="+x+" frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
                                                         out.println("<hr>");
-                                                    }
-                                                    out.println("</div>");
-                                                    out.println("</div>");
+                                                        out.println("<h6>GamePlay</h6>");  
+                                                        x = resultYoutube.get(1).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(1).getLinkRef().substring(31, resultYoutube.get(1).getLinkRef().length());
+                                                        out.println("<iframe width='550' height='350' src="+x+" frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
+                                                        out.println("<hr>");
+                                                        out.println("</div>");
+                                                        out.println("</div>");
 
                                                 %>
                                             </div>
@@ -258,10 +337,14 @@
                                                     out.println("<div class='col-md-12'>");
 
                                                     for (int i = 0; i < resultEveryEye.size(); i++) {
-                                                           
+                                                        
+                                                        
                                                         out.println("<p>");
-                                                        out.println(resultEveryEye.get(i).getRewiew().substring(0, 1000));
-                                                        out.println(resultEveryEye.get(i).getPublisher());
+                                                        out.println(resultEveryEye.get(i).getRewiew().substring(0, 1000));                                                        
+                                                        out.println("</p>"); 
+                                                       
+                                                        out.println("<p> Pubblicato da:");
+                                                        out.println(resultEveryEye.get(i).getPublisher());                                                        
                                                         out.println("</p>"); 
                                                         out.println("<hr>");
                                                     }

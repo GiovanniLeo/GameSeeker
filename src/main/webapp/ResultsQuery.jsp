@@ -160,8 +160,9 @@
                                                         }
                                                         rating = resultMatching.get(i).getFeedback()/100;
                                                         
-                                                   
-                                                        out.println("<b>"+resultMatching.get(i).getTitle()+"</b>");
+                                                        out.println("<div class='row'>");
+                                                        out.println("<i>"+resultMatching.get(i).getTitle()+"</i>");
+                                                        out.println("</div>");
                                                         out.println("<br>");
                                                         out.println("<br>");
                                                  
@@ -211,8 +212,9 @@
                                                         }
                                                         rating = resultIg.get(i).getFeedback()/100;
                                                         
-                                                   
-                                                        out.println("<b>"+resultIg.get(i).getTitle()+"</b>");
+                                                        out.println("<div style='height:35px'>");
+                                                        out.println("<i>"+resultIg.get(i).getTitle()+"</i>");
+                                                        out.println("</div>");
                                                         out.println("<br>");
                                                         out.println("<br>");
                                                         
@@ -245,8 +247,9 @@
                                                         }
                                                         rating = resultG2a.get(0).getFeedback()/100;
                                                         
-                                                   
-                                                        out.println("<b>"+resultG2a.get(0).getTitle()+"</b>");
+                                                        out.println("<div style='height:35px'>");
+                                                        out.println("<i>"+resultG2a.get(0).getTitle()+"</i>");
+                                                        out.println("</div>");
                                                         out.println("<br>");
                                                         out.println("<br>");
                                                         
@@ -287,8 +290,9 @@
                                                         }
                                                         rating = resultG2a.get(i).getFeedback()/100;
                                                         
-                                                   
-                                                        out.println("<b>"+resultG2a.get(i).getTitle()+"</b>");
+                                                        out.println("<div style='height:35px'>");
+                                                        out.println("<i>"+resultG2a.get(i).getTitle()+"</i>");
+                                                        out.println("</div>");
                                                         out.println("<br>");
                                                         out.println("<br>");
                                                  

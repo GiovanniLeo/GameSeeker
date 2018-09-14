@@ -153,7 +153,7 @@
                                                     out.println("<div class='col-md-6'>");
 
                                                     for (int i = 0; i < resultMatching.size(); i++) {
-                                                        if (i == half || i == half + 1 && flag == false) {
+                                                        if (i == half || i == half+ 1 && flag == false) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
                                                             flag = true;
@@ -200,14 +200,14 @@
                                                     out.println("<div class='col-md-6'>");
                                                     half = (resultIg.size() / 2);
                                                     int resto = (resultIg.size()% 2);
-                                                    if(resto==1)half++;
+                                                 
                                                     for (int i = 0; i < resultIg.size(); i++) {
-                                                        if (i == half ) {
+                                                        if (i == half+1 ) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
-                                                           
+                                                       
                                                         }
-                                                        rating = resultMatching.get(i).getFeedback()/100;
+                                                        rating = resultIg.get(i).getFeedback()/100;
                                                         
                                                    
                                                         out.println("<b>"+resultIg.get(i).getTitle()+"</b>");
@@ -231,6 +231,7 @@
                                                         out.println("<a href=" + resultIg.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
                                                         out.println("</form>");
                                                         out.println("<hr>");
+                                     
                                                     }
                                                     int k=0;
                                                     if(resto==1)
@@ -267,14 +268,14 @@
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
                                                     half = (resultG2a.size() / 2);
-                                                    resto = (resultIg.size()% 2);
-                                                    if(resto==1)half++;
+                                                    resto = (resultG2a.size()% 2);
+                                                 
                                                     
                                                     for (int i = k; i < resultG2a.size(); i++) {
-                                                        if (i == half ) {
+                                                        if ( i == half+ 1) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
-                                                           
+                                                            
                                                         }
                                                         rating = resultG2a.get(i).getFeedback()/100;
                                                         
@@ -301,7 +302,8 @@
                                                         out.println("</br>");
                                                         out.println("<a href=" + resultG2a.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
                                                         out.println("</form>");
-                                                        out.println("<hr>");                                                       
+                                                        out.println("<hr>");
+
                                                     }
 
                                                     out.println("</div>");

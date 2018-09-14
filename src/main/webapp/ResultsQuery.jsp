@@ -146,13 +146,13 @@
                                             <div class="tab-pane active" id="studio">
 
                                                 <% 
-                                                    int half = (resultMatching.size() / 2);
+                                                    double half = (resultMatching.size() / 2);
                                                     int rating;
                                                     boolean flag = false;
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
-
-                                                    for (int i = 0; i < resultMatching.size(); i++) {
+                                                    int i = 0;
+                                                    while(i < resultMatching.size()) {
                                                         if (i == half || i == half+ 1 && flag == false) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
@@ -184,6 +184,7 @@
                                                         out.println("<a href=" + resultMatching.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
                                                         out.println("</form>");
                                                         out.println("<hr>");
+                                                        i++;
                                                     }
                                                     out.println("</div>");
                                                     out.println("</div>");
@@ -195,17 +196,18 @@
                                                 <%  
                                                     System.out.println("" + resultIg.size());
                                                     System.out.println("" + resultG2a.size());
-                                                    flag = false;
+                                                    flag = true;
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
-                                                    half = (resultIg.size() / 2);
+                                                    half =(double)resultIg.size()/ 2;
                                                     int resto = (resultIg.size()% 2);
-                                                 
-                                                    for (int i = 0; i < resultIg.size(); i++) {
-                                                        if (i == half+1 ) {
+                                                    i=0;
+                                                    System.out.println(""+half);
+                                                    while(i < resultIg.size()) {
+                                                        if ((i>half || i==half) && flag) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
-                                                       
+                                                            flag=false;
                                                         }
                                                         rating = resultIg.get(i).getFeedback()/100;
                                                         
@@ -231,11 +233,16 @@
                                                         out.println("<a href=" + resultIg.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
                                                         out.println("</form>");
                                                         out.println("<hr>");
-                                     
+                                                        i=i+1;
                                                     }
                                                     int k=0;
                                                     if(resto==1)
                                                     {   
+                                                        if(resultIg.size()==1)
+                                                        {
+                                                            out.println("</div>");
+                                                            out.println("<div class='col-md-6'>"); 
+                                                        }
                                                         rating = resultG2a.get(0).getFeedback()/100;
                                                         
                                                    
@@ -267,15 +274,16 @@
 
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
-                                                    half = (resultG2a.size() / 2);
+                                                    half = (double)resultG2a.size()/ 2;
                                                     resto = (resultG2a.size()% 2);
-                                                 
-                                                    
-                                                    for (int i = k; i < resultG2a.size(); i++) {
-                                                        if ( i == half+ 1) {
+                                                    flag=true;
+                                                    i=k;
+                                                      System.out.println(""+half);
+                                                    while(i < resultG2a.size()) {
+                                                        if ( i== half || i>half && flag) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
-                                                            
+                                                            flag=false;
                                                         }
                                                         rating = resultG2a.get(i).getFeedback()/100;
                                                         
@@ -303,7 +311,7 @@
                                                         out.println("<a href=" + resultG2a.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
                                                         out.println("</form>");
                                                         out.println("<hr>");
-
+                                                        i++;
                                                     }
 
                                                     out.println("</div>");
@@ -337,8 +345,8 @@
                                                                                                       
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-12'>");
-
-                                                    for (int i = 0; i < resultEveryEye.size(); i++) {
+                                                    i=0;
+                                                    while(i < resultEveryEye.size()) {
                                                         
                                                         
                                                         out.println("<p>");
@@ -349,6 +357,7 @@
                                                         out.println(resultEveryEye.get(i).getPublisher());                                                        
                                                         out.println("</p>"); 
                                                         out.println("<hr>");
+                                                        i++;
                                                     }
                                                     out.println("</div>");
                                                     out.println("</div>");

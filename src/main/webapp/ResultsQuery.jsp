@@ -166,7 +166,8 @@
                                                             out.println("<div class='col-md-12'>"); 
                                                             flag = true;
                                                         }
-                                                        rating = resultMatching.get(i).getFeedback()/100;
+                                                        rating = resultMatching.get(i).getFeedback();
+                                                        System.out.println(resultMatching.get(i).getFeedback());
                                                         
                                                         out.println("<div class='row'>");
                                                         out.println("<i>"+resultMatching.get(i).getTitle()+"</i>");
@@ -221,7 +222,8 @@
                                                             out.println("<div class='col-md-6'>");
                                                             flag=false;
                                                         }
-                                                        rating = resultIg.get(i).getFeedback()/100;
+                                                        rating = resultIg.get(i).getFeedback();
+                                                      
                                                         
                                                         out.println("<div style='height:35px'>");
                                                         out.println("<i>"+resultIg.get(i).getTitle()+"</i>");
@@ -258,8 +260,9 @@
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>"); 
                                                         }
-                                                        rating = resultG2a.get(0).getFeedback()/100;
-                                                        
+                                                        rating = resultG2a.get(0).getFeedback();
+                                                        System.out.println(resultG2a.get(0).getFeedback());
+                                                   
                                                         out.println("<div style='height:35px'>");
                                                         out.println("<i>"+resultG2a.get(0).getTitle()+"</i>");
                                                         out.println("</div>");

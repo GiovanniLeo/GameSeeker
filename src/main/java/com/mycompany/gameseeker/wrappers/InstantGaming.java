@@ -130,7 +130,9 @@ public class InstantGaming {
             Element percentageEl = doc.selectFirst("#ig-panel-center > div > div.information > div.tabs "
                     + "> a[class^=tab mainshadow productreviews] > span");
 
-            Element numOfRewiewEl = doc.selectFirst("#ig-product-reviews > div.header.mainshadow > div > h3");
+            Element feedbackEl = doc.selectFirst("#ig-panel-center > div >"
+                    + " div.information > div.tabs > a.tab.mainshadow.feedbacks"
+                    + " > span > span");
 
             Element releaseDateEl = doc.selectFirst("#ig-product-desc-content > div.release > span");
 
@@ -140,24 +142,11 @@ public class InstantGaming {
             String releaseDate = releaseDateEl.text();
             String price = priceEL.text().replace(",", ".").replace("€", "");
 
-            String numOfRewiewString = numOfRewiewEl.text();
+            String width = feedbackEl.attr("style").replaceAll("\\D+","");
+            int feedback = Integer.parseInt(width)/15;
+           
 
-            Pattern pattern = Pattern.compile("\\([0-9]*");
-            Matcher matcher = pattern.matcher(numOfRewiewString);
-
-            int percentage, goodReview = 0;
-
-            if (matcher.find()) {
-                try {
-                    String temp = matcher.group(0).replace("(", "");
-                    percentage = Integer.parseInt(percentageEl.text());
-                    int totalReview = Integer.parseInt(temp);
-                    goodReview = (percentage * totalReview) / 100;
-                } catch (Exception e) {
-                    goodReview = -1; //Mi serve per escluderlo dal conteggio delle recensioni positive
-                }
-
-            }
+           
             String requirement = requirementEl.text();
 
             if (requirement.contains("*I tag e i requisiti sono solo a scopo informativo")) {
@@ -173,7 +162,7 @@ public class InstantGaming {
 
             map.put(AVAILABILITY, avail);
             map.put(DESCRIPTION, description);
-            map.put(FEEDBACK, "" + goodReview);
+            map.put(FEEDBACK, "" + feedback);
             map.put(MIN, requisitiMinimi);
             map.put(REC, requisitiConsigliati);
             map.put(PRICE, price);

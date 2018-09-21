@@ -180,7 +180,7 @@ public class Mediator {
                                 requisitiMinimi = igResults.get(i).getRequisitiMinimi();
                                 requisistiConsigliati = igResults.get(i).getRequisitiConsigliati();
                                 descrizione = igResults.get(i).getDescription();
-                                feedback = igResults.get(i).getFeedback();
+                                feedback = (igResults.get(i).getFeedback() + g2aResults.get(j).getFeedback())/2;
                                 releaseDate = igResults.get(i).getReleaseDate();
 
                                 // System.out.println(igResults.get(i).getPlattformTitle() + "\n" + g2aResults.get(j).getPlattformTitle());

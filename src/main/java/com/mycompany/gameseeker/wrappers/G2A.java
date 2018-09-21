@@ -33,6 +33,7 @@ public class G2A {
     private static final String IMG = "Image";
     private static final String XBOX = "XBOX LIVE";
     private static final String PSN = "PSN";
+    private static final String FEEDBACK = "Feedback";
 
     public ArrayList<Result> searchResults(String searchQuery) throws IOException {
 
@@ -97,6 +98,7 @@ public class G2A {
                             map.get(PLATTFORM),
                             Double.parseDouble(map.get(PRICE)));
                     res.setType(Utility.G2A);
+                    res.setFeedback(Integer.parseInt(map.get(FEEDBACK)));
                     results.add(res);
 
                 }
@@ -147,6 +149,15 @@ public class G2A {
             if (!region.equalsIgnoreCase("Can be activated in Italy")) {
                 return null;
             }
+            
+            Element feedbackEl = doc.selectFirst("#app > div > div.content >"
+                    + " div > section > div.product__info > "
+                    + "div.product__details > div > div > "
+                    + "div.instant-delivery-wrapper > div > "
+                    + "div > section > div.user-info > div >"
+                    + " div.star-rating > div > div");
+            String width = feedbackEl.attr("style").replaceAll("\\D+","");
+            int feedback = Integer.parseInt(width)/20;
 
             
 
@@ -165,6 +176,7 @@ public class G2A {
             map.put(PRICE, price);
             map.put(PLATTFORM, platform);
             map.put(IMG, imgLink);
+            map.put(FEEDBACK,feedback+"");
 
         } catch (Exception e) {
             e.printStackTrace();

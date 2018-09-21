@@ -43,8 +43,8 @@ public class Test {
 //		Steam steam = new Steam();
 //		ArrayList<Result> results = steam.searchResul("Dark Souls");
 //             &platform=272&platform=1&platform=2&platform=9242
-		/*InstantGaming ig = new InstantGaming();
-		ArrayList<Result> results2 = ig.searchResults("fddfgdfgdgd");*/
+		InstantGaming ig = new InstantGaming();
+		ArrayList<Result> results2 = ig.searchResults("Dark souls");
 		
 		//ArrayList<Result> results,results2;
 		G2A g2a = new G2A();/*
@@ -128,10 +128,10 @@ public class Test {
                 System.out.println("Varianza -->"+sumOfSquare/sum);
 
                */
-		YouTube yt = new YouTube();
+		/*YouTube yt = new YouTube();
 		ArrayList<Result>map = yt.searchResults("Dark Souls III");
 		System.out.println(map.get(0).getTitle());
-		System.out.println(map.get(1).getTitle());
+		System.out.println(map.get(1).getTitle());*/
 		/*
 		long end = System.currentTimeMillis();
 		double total = (end-start)/1000;
@@ -152,7 +152,7 @@ public class Test {
             }*/
           
          /* ArrayList<Result> result = new ArrayList<>();
-          result = g2a.searchResults("Dark souls");
+          result = g2a.searchResults("Dark souls");/*
             for (int i = 0; i < result.size(); i++) {
                 System.out.println(result.get(i).getTitle());
                 System.out.println(result.get(i).getPlattformTitle());

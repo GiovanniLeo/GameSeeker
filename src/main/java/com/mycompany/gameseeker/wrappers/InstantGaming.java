@@ -141,7 +141,7 @@ public class InstantGaming {
 
             String width = feedbackEl.attr("style").replaceAll("\\D+","");
             int feedback = Integer.parseInt(width.substring(0,2))/15;
-            System.out.println(feedback);
+          
            
 
            

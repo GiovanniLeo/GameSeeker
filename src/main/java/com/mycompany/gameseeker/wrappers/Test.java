@@ -43,8 +43,8 @@ public class Test {
 //		Steam steam = new Steam();
 //		ArrayList<Result> results = steam.searchResul("Dark Souls");
 //             &platform=272&platform=1&platform=2&platform=9242
-		InstantGaming ig = new InstantGaming();
-		ArrayList<Result> results2 = ig.searchResults("Dark souls");
+		/*InstantGaming ig = new InstantGaming();
+		ArrayList<Result> results2 = ig.searchResults("Dark souls");*/
 		
 		//ArrayList<Result> results,results2;
 		G2A g2a = new G2A();/*
@@ -152,7 +152,7 @@ public class Test {
             }*/
             System.out.println("G2A");
           ArrayList<Result> result = new ArrayList<>();
-          result = g2a.searchResults("Dark souls");/*
+          result = g2a.searchResults("Grand Theft Auto V");/*
             for (int i = 0; i < result.size(); i++) {
                 System.out.println(result.get(i).getTitle());
                 System.out.println(result.get(i).getPlattformTitle());

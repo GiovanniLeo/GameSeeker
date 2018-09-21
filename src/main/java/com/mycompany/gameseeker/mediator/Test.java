@@ -14,7 +14,7 @@ import com.mycompany.gameseeker.mongoDB.Result;
 public class Test {
     public static void main(String[] args) {
         Mediator md = new Mediator();
-        md.selectElements("FINAL FANTASY XIII");
+        md.selectElements("Dark Souls");
         //md.checkElements("Dark Souls III");
        /* Result res = md.getG2aResults().get(0);
         System.out.println("----------------------------------------");

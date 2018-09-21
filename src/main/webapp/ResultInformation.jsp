@@ -43,7 +43,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="http://www.creative-tim.com">Creative Tim</a>
+                    <a class="navbar-brand" href="index.html">GS Project</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="navigation-example">
@@ -110,17 +110,17 @@
 
                                     out.println("<div class='col-md-6'>");
 
-                                    out.println("<h6>Platform: " + resultInformation.getPlattformTitle());
+                                    out.println("<b>Platform: </b>" + resultInformation.getPlattformTitle());
                                     out.println("<br>");
-                                    out.println("Price: " + resultInformation.getPrice());
+                                    out.println("<b>Price: </b> " + resultInformation.getPrice());
                                     out.println("<br>");
-                                    out.println("Feedback: " + resultInformation.getFeedback());
+                                    out.println("<b>Feedback: </b>" + resultInformation.getFeedback());
                                     out.println("<br>");
-                                    out.println("Release date: " + resultInformation.getReleaseDate());
+                                    out.println("<b>Release date: </b>" + resultInformation.getReleaseDate());
                                     out.println("<br>");
-                                    out.println("Requisiti minimi: " + resultInformation.getRequisitiMinimi());
+                                    out.println("<b>Requisiti minimi: </b>" + resultInformation.getRequisitiMinimi());
                                     out.println("<br>");
-                                    out.println("Requisiti consigliati: " + resultInformation.getRequisitiConsigliati());
+                                    out.println("<b>Requisiti consigliati: </b>" + resultInformation.getRequisitiConsigliati());
                                     out.println("<br>");
                                     out.println("<br>");
                                     out.println("<br>");

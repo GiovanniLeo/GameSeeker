@@ -48,7 +48,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="http://www.creative-tim.com">Creative Tim</a>
+                    <a class="navbar-brand" href="index.html">GS Project</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="navigation-example">
@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <div class="description text-center">
-                            <p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
+                            <p>GameSeeker è una piattaforma web che ha lo scopo di raccogliere informazioni sui videogame ricercati, attraverso una semplice interfaccia grafica adatta a qualsiasi dispositivo </p>
                         </div>
 
                         <div class="row">
@@ -149,13 +149,21 @@
                                                     double half = (resultMatching.size() / 2);
                                                     int rating;
                                                     boolean flag = false;
+                                                    boolean one = false;
+                                                    if(resultMatching.size()==1)one = true;
                                                     out.println("<div class='row'>");
+                                                    if(!one)
                                                     out.println("<div class='col-md-6'>");
+                                                    else
+                                                    out.println("<div class='col-md-12'>");   
                                                     int i = 0;
                                                     while(i < resultMatching.size()) {
                                                         if (i == half || i == half+ 1 && flag == false) {
                                                             out.println("</div>");
+                                                            if(!one)
                                                             out.println("<div class='col-md-6'>");
+                                                            else
+                                                            out.println("<div class='col-md-12'>"); 
                                                             flag = true;
                                                         }
                                                         rating = resultMatching.get(i).getFeedback()/100;
@@ -170,9 +178,11 @@
                                                         out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
                                                         out.println("<input type='hidden' name='id' value='"+resultMatching.get(i).getId()+"'>");
                                                         out.println("<input type='image' src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");                                                      
-                                                        
-                                                        out.println("Prezzo: "+resultMatching.get(i).getPrice());
                                                         out.println("<br>");
+                                                        out.println("<br>");
+                                                        out.println("Prezzo: "+resultMatching.get(i).getPrice()+" €");
+                                                        out.println("<br>");
+
                                                         for(int j=0;j<rating;j++)
                                                         {
                                                             out.println("<span class='fa fa-star checked'></span>");
@@ -182,6 +192,7 @@
                                                             out.println("<span class='fa fa-star'></span>");
                                                         }
                                                         out.println("</br>");
+
                                                         out.println("<a href=" + resultMatching.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
                                                         out.println("</form>");
                                                         out.println("<hr>");
@@ -221,7 +232,9 @@
                                                         out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
                                                         out.println("<input type='hidden' name='id' value='"+resultIg.get(i).getId()+"'>");
                                                         out.println("<input type='image' src=" + resultIg.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");
-                                                        out.println("Prezzo: "+resultIg.get(i).getPrice());
+                                                        out.println("<br>");
+                                                        out.println("<br>");                                                        
+                                                        out.println("Prezzo: "+resultIg.get(i).getPrice()+" €");
                                                         out.println("</br>");
                                                         for(int j=0;j<rating;j++)
                                                         {
@@ -331,11 +344,11 @@
                                                     out.println("<div class='col-md-12'>");
 
                                                     
-                                                        out.println("<h6>Trailer</h6>");  
+                                                        out.println("<h3>Video più visualizzato</h3>");  
                                                         String x = resultYoutube.get(0).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(0).getLinkRef().substring(31, resultYoutube.get(0).getLinkRef().length());
                                                         out.println("<iframe width='550' height='350' src="+x+" frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
                                                         out.println("<hr>");
-                                                        out.println("<h6>GamePlay</h6>");  
+                                                        out.println("<h3>GamePlay</h3>");  
                                                         x = resultYoutube.get(1).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(1).getLinkRef().substring(31, resultYoutube.get(1).getLinkRef().length());
                                                         out.println("<iframe width='550' height='350' src="+x+" frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
                                                         out.println("<hr>");
@@ -352,10 +365,12 @@
                                                     i=0;
                                                     while(i < resultEveryEye.size()) {
                                                         
+                                                        out.println("<textarea style='overflow-y:scroll' rows='10' cols='100'>"); 
+                                                                                                              
+                                                        out.println(resultEveryEye.get(i).getRewiew());
                                                         
-                                                        out.println("<p>");
-                                                        out.println(resultEveryEye.get(i).getRewiew().substring(0, 1000));                                                        
-                                                        out.println("</p>"); 
+                                                        out.println("</textarea>");
+                                              
                                                        
                                                         out.println("<p> Pubblicato da:");
                                                         out.println(resultEveryEye.get(i).getPublisher());                                                        

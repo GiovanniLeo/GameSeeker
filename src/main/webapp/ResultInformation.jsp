@@ -105,21 +105,26 @@
                                 <% PrintWriter outing = response.getWriter();
                                  
                                     out.println("<div class='col-md-6'>");
-                                    out.println("<img src=" + resultInformation.getImgUrl() + " class='img-rounded' width='250' height='300' />");
+                                    out.println("<img src=" + resultInformation.getImgUrl() + " class='img-rounded' width='250' height='350' style= 'margin-bottom: 50px;' />");
                                     out.println("</div>");
 
                                     out.println("<div class='col-md-6'>");
-
+                                    
+                                    if(resultInformation.getPlattformTitle()!=null)
                                     out.println("<b>Platform: </b>" + resultInformation.getPlattformTitle());
-                                    out.println("<br>");
+                                    out.println("<br>");                                
                                     out.println("<b>Price: </b> " + resultInformation.getPrice());
                                     out.println("<br>");
+                                    if(resultInformation.getFeedback()!=0)
                                     out.println("<b>Feedback: </b>" + resultInformation.getFeedback());
                                     out.println("<br>");
+                                    if(resultInformation.getReleaseDate()!=null)
                                     out.println("<b>Release date: </b>" + resultInformation.getReleaseDate());
                                     out.println("<br>");
+                                    if(resultInformation.getRequisitiMinimi()!=null)
                                     out.println("<b>Requisiti minimi: </b>" + resultInformation.getRequisitiMinimi());
                                     out.println("<br>");
+                                    if(resultInformation.getRequisitiConsigliati()!=null)
                                     out.println("<b>Requisiti consigliati: </b>" + resultInformation.getRequisitiConsigliati());
                                     out.println("<br>");
                                     out.println("<br>");

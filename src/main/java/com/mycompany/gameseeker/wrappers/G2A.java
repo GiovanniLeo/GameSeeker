@@ -158,7 +158,7 @@ public class G2A {
                     + " div.star-rating > div > div");
             String width = feedbackEl.attr("style").replaceAll("\\D+","");
             int feedback = Integer.parseInt(width)/20;
-
+            System.out.println(feedback);
             
 
             String price = priceEl.text().replace("EUR", "").replace(" ", "");

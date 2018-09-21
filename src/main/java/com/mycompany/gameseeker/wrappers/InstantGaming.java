@@ -127,9 +127,6 @@ public class InstantGaming {
 
             Element requirementEl = doc.selectFirst("#ig-product-desc-content > div[class^=hardspecs]");
 
-            Element percentageEl = doc.selectFirst("#ig-panel-center > div > div.information > div.tabs "
-                    + "> a[class^=tab mainshadow productreviews] > span");
-
             Element feedbackEl = doc.selectFirst("#ig-panel-center > div >"
                     + " div.information > div.tabs > a.tab.mainshadow.feedbacks"
                     + " > span > span");
@@ -143,7 +140,8 @@ public class InstantGaming {
             String price = priceEL.text().replace(",", ".").replace("€", "");
 
             String width = feedbackEl.attr("style").replaceAll("\\D+","");
-            int feedback = Integer.parseInt(width)/15;
+            int feedback = Integer.parseInt(width.substring(0,2))/15;
+            System.out.println(feedback);
            
 
            

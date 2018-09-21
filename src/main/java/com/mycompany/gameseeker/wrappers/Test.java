@@ -150,8 +150,8 @@ public class Test {
               for (int i = 0; i < titles.size(); i++) {
                   System.out.println(titles.get(i));
             }*/
-          
-         /* ArrayList<Result> result = new ArrayList<>();
+            System.out.println("G2A");
+          ArrayList<Result> result = new ArrayList<>();
           result = g2a.searchResults("Dark souls");/*
             for (int i = 0; i < result.size(); i++) {
                 System.out.println(result.get(i).getTitle());

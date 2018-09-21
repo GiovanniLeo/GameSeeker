@@ -18,6 +18,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 import org.apache.commons.text.similarity.LevenshteinDetailedDistance;
 import org.apache.commons.text.similarity.LevenshteinResults;
 import org.bson.types.ObjectId;
@@ -40,6 +43,8 @@ public class Mediator {
     private ArrayList<Result> resultsMatch;
 
     private static ExecutorService exec = Executors.newCachedThreadPool();
+    private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
+    
 
     public Mediator() {
         igResults = new ArrayList<>();
@@ -53,13 +58,13 @@ public class Mediator {
     }
 
     private void getDataFromSites(String searchQuery) {
-
+        /*ScheduledFuture scheduledFuture = scheduledExecutorService
+                .schedule(new DatabaseCleanTask(ds),6,TimeUnit.SECONDS);*/
         getDataFromAmazon(searchQuery);
         getDataFromEveryeye(searchQuery);
         getDataFromInstantGaming(searchQuery);
         getDataFromYouTube(searchQuery);
         getDataFromG2A(searchQuery);
-
     }
 
     private void getDataFromInstantGaming(String searchQuery) {
@@ -130,7 +135,7 @@ public class Mediator {
                     lowerG2ATitle = g2aResults.get(j).getTitle().toLowerCase();
                     levDistance = lev.apply(loweIgTitle, lowerG2ATitle);
                     distance = levDistance.getDistance();
-                    // System.out.println(loweIgTitle + "\n" + lowerG2ATitle +"\nDistance->"+distance+ "\n-----------");
+                     //System.out.println(loweIgTitle + "\n" + lowerG2ATitle +"\nDistance->"+distance+ "\n-----------");
                     distanceSum += distance;
                     count++;
 
@@ -177,11 +182,25 @@ public class Mediator {
                                 img = igResults.get(i).getImgUrl();
                                 plattform = igResults.get(i).getPlattformTitle();
                                 title = igResults.get(i).getTitle();
-                                requisitiMinimi = igResults.get(i).getRequisitiMinimi();
-                                requisistiConsigliati = igResults.get(i).getRequisitiConsigliati();
                                 descrizione = igResults.get(i).getDescription();
                                 feedback = (igResults.get(i).getFeedback() + g2aResults.get(j).getFeedback())/2;
                                 releaseDate = igResults.get(i).getReleaseDate();
+                                
+                                if (igResults.get(i).getRequisitiMinimi() == null) {
+                                    requisitiMinimi = g2aResults.get(j).getRequisitiMinimi();
+                                }
+                                else
+                                {
+                                    requisitiMinimi = igResults.get(i).getRequisitiMinimi();
+                                }
+                                
+                                if (igResults.get(i).getRequisitiConsigliati() == null) {
+                                    requisistiConsigliati = g2aResults.get(j).getRequisitiConsigliati();
+                                }
+                                else
+                                {
+                                    requisistiConsigliati = igResults.get(i).getRequisitiConsigliati();
+                                }
 
                                 // System.out.println(igResults.get(i).getPlattformTitle() + "\n" + g2aResults.get(j).getPlattformTitle());
                                 //System.out.println(loweIgTitle + "\n" + lowerG2ATitle + "\n-----------");
@@ -220,7 +239,7 @@ public class Mediator {
         System.out.println("Prima di salvare");
         saveAllData();
         System.out.println("Salvati");
-        debug();
+        //debug();
     }
 
     public boolean checkElements(String searchQuery) {

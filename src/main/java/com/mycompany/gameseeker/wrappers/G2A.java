@@ -34,6 +34,8 @@ public class G2A {
     private static final String XBOX = "XBOX LIVE";
     private static final String PSN = "PSN";
     private static final String FEEDBACK = "Feedback";
+    private static final String MIN = "Min requirement";
+    private static final String REC = "Rec requirement";
 
     public ArrayList<Result> searchResults(String searchQuery) throws IOException {
 
@@ -99,6 +101,8 @@ public class G2A {
                             Double.parseDouble(map.get(PRICE)));
                     res.setType(Utility.G2A);
                     res.setFeedback(Integer.parseInt(map.get(FEEDBACK)));
+                    res.setRequisitiConsigliati(map.get(REC));
+                    res.setRequisitiMinimi(map.get(MIN));
                     results.add(res);
 
                 }
@@ -120,7 +124,8 @@ public class G2A {
         HashMap<String, String> map = new HashMap<>();
         try {
             Document doc = Jsoup.connect(url).get();
-
+            String requisitiMinimi = null;
+            String requisitiConsigliati = null;
             Element plattformEl = doc.selectFirst("#app > div > div.content"
                     + " > div > section > div.product__info "
                     + "> div.product__details > div > div > ul "
@@ -158,7 +163,25 @@ public class G2A {
                     + " div.star-rating > div > div");
             String width = feedbackEl.attr("style").replaceAll("\\D+","");
             int feedback = Integer.parseInt(width)/20;
-            System.out.println(feedback);
+           
+            Element requirementEl = doc.selectFirst("#app > div > div.content"
+                    + " > div > section > div.product-sections "
+                    + "> div.product-sections__wrapper"
+                    + " > div > section:nth-child(3) "
+                    + "> div > div > div > div > div > div.tabs-content");
+            if (requirementEl != null) {
+                String requirement = requirementEl.text();
+                String[] requisiti = requirement.split("Requisiti consigliati");
+                requisitiMinimi = requisiti[0];
+                if (requisiti.length > 1) {
+                    requisitiConsigliati = "Requisiti raccomandati" + requisiti[1];
+                }
+                System.out.println(requisitiConsigliati);
+                System.out.println(requisitiMinimi);
+            }
+
+            
+            
             
 
             String price = priceEl.text().replace("EUR", "").replace(" ", "");
@@ -177,6 +200,8 @@ public class G2A {
             map.put(PLATTFORM, platform);
             map.put(IMG, imgLink);
             map.put(FEEDBACK,feedback+"");
+            map.put(MIN, requisitiMinimi);
+            map.put(REC, requisitiConsigliati);
 
         } catch (Exception e) {
             e.printStackTrace();

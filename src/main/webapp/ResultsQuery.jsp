@@ -160,6 +160,7 @@
                                                     if (resultMatching.size() == 1) {
                                                         one = true;
                                                     }
+
                                                     out.println("<div class='row'>");
                                                     if (!one) {
                                                         out.println("<div class='col-md-6'>");

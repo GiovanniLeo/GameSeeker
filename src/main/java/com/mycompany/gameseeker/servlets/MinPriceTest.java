@@ -56,6 +56,7 @@ public class MinPriceTest extends HttpServlet {
 
         String titolo = request.getParameter("titolo");
         Mediator md = new Mediator();
+        System.out.println(titolo);
         md.selectElements(titolo);
 
         resultMatching = md.getResultsMatch();
@@ -65,14 +66,50 @@ public class MinPriceTest extends HttpServlet {
         resultEveryEye = md.getEveryeyeResults();
         resultAmazon = md.getAmazonResult();
 
-
         ServletContext context = getServletContext();
+
+
+        if (resultMatching.size() == 0) {
+            Result minG2a = null;
+            Result minIg = null;
+            if (resultG2a.size() != 0) {
+                minG2a = resultG2a.get(0);
+                for (int i = 0; i < resultG2a.size(); i++) {
+                    if (resultG2a.get(i).getPrice() < minG2a.getPrice()) {
+                        minG2a = resultG2a.get(i);
+                    }
+                }
+            }
+            if (resultIg.size() != 0) {
+                minIg = resultIg.get(0);
+                for (int i = 0; i < resultIg.size(); i++) {
+                    if (resultIg.get(i).getPrice() < minIg.getPrice()) {
+                        minIg = resultIg.get(i);
+                    }
+                }
+            }
+            if (minIg != null && minG2a != null) {
+                if (minG2a.getPrice() < minIg.getPrice()) {
+                    resultMatching.add(minG2a);
+                } else {
+                    resultMatching.add(minIg);
+                }
+            }
+            else if(minIg != null && minG2a == null)
+            {
+                resultMatching.add(minIg);
+            }
+            else
+            {
+                resultMatching.add(minG2a);
+            }
+        }
+        
         request.setAttribute("resultMatching", resultMatching);
         request.setAttribute("resultIg", resultIg);
         request.setAttribute("resultG2a", resultG2a);
         request.setAttribute("resultYoutube", resultYoutube);
         request.setAttribute("resultEveryEye", resultEveryEye);
-        
         RequestDispatcher dispatcher = context.getRequestDispatcher("/ResultsQuery.jsp");
         dispatcher.forward(request, response);
 

@@ -32,19 +32,7 @@
 
         <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
         <script src="assets/js/material-kit.js" type="text/javascript"></script>
-        <script>
-            function scrollToAnchor(aid) {
-                console.log(aid);
-                $('html,body').animate({scrollTop: $(document).height() - $(window).height()}, 900);
-            }
-            $(windows).load(function () {
-                $("#ReserchIconLink").click(function () {
-                    scrollToAnchor('#GameSearch');
-                });
-            })
 
-
-        </script>
 
     </head>
 
@@ -239,5 +227,17 @@
 
     <!--   Core JS Files   -->
 
+        <script>
+            function scrollToAnchor(aid) {
+                console.log(aid);
+                $('html,body').animate({scrollTop: $(document).height() - $(window).height()}, 900);
+            }
+          
+                $("#ReserchIconLink").click(function () {
+                    scrollToAnchor('#GameSearch');
+                });
+         
 
+
+        </script>
 </html>

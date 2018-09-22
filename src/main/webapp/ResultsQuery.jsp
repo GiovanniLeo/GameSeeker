@@ -30,11 +30,11 @@
         <!-- CSS Files -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="assets/css/material-kit.css" rel="stylesheet"/>
-<style>
-.checked {
-    color: orange;
-}
-</style>
+        <style>
+            .checked {
+                color: orange;
+            }
+        </style>
     </head>
 
     <body class="profile-page">
@@ -48,48 +48,56 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">GS Project</a>
+                    <a class="navbar-brand" href="index.html">
+                     <i class="material-icons">home</i>
+                     GameSeeker
+                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="navigation-example">
                     <ul class="nav navbar-nav navbar-right">
+
                         <li>
-                            <a href="components-documentation.html" target="_blank">
-                                Components
-                            </a>
+                            <form action="MinPriceTest" method="GET" role="form" class="form-horizontal">
+                            <div class="form-group">
+                    
+                          <input type="text" name="titolo" value="" placeholder="Ricerca" class="form-control " style="text-align:center;" type="submit"/>                            
+                                                   
+                            </div>
+                            </form>
                         </li>
-                        <li>
-                            <a href="http://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-freebie" target="_blank">
-                                <i class="material-icons">unarchive</i> Upgrade to PRO
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                                <i class="fa fa-instagram"></i>
-                            </a>
-                        </li>
-                    </ul>
+                        <!--          <li>
+                                      <a href="http://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-freebie" target="_blank">
+                                          <i class="material-icons">unarchive</i> Upgrade to PRO
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+                                          <i class="fa fa-twitter"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+                                          <i class="fa fa-facebook-square"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+                                          <i class="fa fa-instagram"></i>
+                                      </a>
+                                 </li>
+                        -->      </ul>
                 </div>
             </div>
         </nav>
-                                        <%
-                                            ArrayList<Result> resultMatching = (ArrayList<Result>) request.getAttribute("resultMatching");
-                                            ArrayList<Result> resultIg = (ArrayList<Result>) request.getAttribute("resultIg");
-                                            ArrayList<Result> resultG2a = (ArrayList<Result>) request.getAttribute("resultG2a");
-                                            ArrayList<Result> resultYoutube = (ArrayList<Result>) request.getAttribute("resultYoutube");
-                                            ArrayList<Result> resultEveryEye = (ArrayList<Result>) request.getAttribute("resultEveryEye");
+        <%
+            ArrayList<Result> resultMatching = (ArrayList<Result>) request.getAttribute("resultMatching");
+            ArrayList<Result> resultIg = (ArrayList<Result>) request.getAttribute("resultIg");
+            ArrayList<Result> resultG2a = (ArrayList<Result>) request.getAttribute("resultG2a");
+            ArrayList<Result> resultYoutube = (ArrayList<Result>) request.getAttribute("resultYoutube");
+            ArrayList<Result> resultEveryEye = (ArrayList<Result>) request.getAttribute("resultEveryEye");
 
-                                        %>
+        %>
         <div class="wrapper">
             <div class="header header-filter" style="background-image: url('Immagini/gaming.jpg');"></div>
 
@@ -103,7 +111,7 @@
                                 </div>
                                 <div class="name">
                                     <h3 class="title">Games</h3>
-               
+
                                 </div>
                             </div>
                         </div>
@@ -134,7 +142,7 @@
                                                     Watch now
                                                 </a>
                                             </li>
-                                             <li>
+                                            <li>
                                                 <a href="#reviews" role="tab" data-toggle="tab">
                                                     <i class="material-icons">sms</i>
                                                     Reviews
@@ -145,51 +153,51 @@
                                         <div class="tab-content gallery">
                                             <div class="tab-pane active" id="studio">
 
-                                                <% 
-                                                    double half = (resultMatching.size() / 2);
+                                                <%                                                    double half = (resultMatching.size() / 2);
                                                     int rating;
                                                     boolean flag = false;
                                                     boolean one = false;
-                                                    if(resultMatching.size()==1)one = true;
+                                                    if (resultMatching.size() == 1) {
+                                                        one = true;
+                                                    }
                                                     out.println("<div class='row'>");
-                                                    if(!one)
-                                                    out.println("<div class='col-md-6'>");
-                                                    else
-                                                    out.println("<div class='col-md-12'>");   
+                                                    if (!one) {
+                                                        out.println("<div class='col-md-6'>");
+                                                    } else {
+                                                        out.println("<div class='col-md-12'>");
+                                                    }
                                                     int i = 0;
-                                                    while(i < resultMatching.size()) {
-                                                        if (i == half || i == half+ 1 && flag == false) {
+                                                    while (i < resultMatching.size()) {
+                                                        if (i == half || i == half + 1 && flag == false) {
                                                             out.println("</div>");
-                                                            if(!one)
-                                                            out.println("<div class='col-md-6'>");
-                                                            else
-                                                            out.println("<div class='col-md-12'>"); 
+                                                            if (!one) {
+                                                                out.println("<div class='col-md-6'>");
+                                                            } else {
+                                                                out.println("<div class='col-md-12'>");
+                                                            }
                                                             flag = true;
                                                         }
                                                         rating = resultMatching.get(i).getFeedback();
                                                         System.out.println(resultMatching.get(i).getFeedback());
-                                                        
+
                                                         out.println("<div class='row'>");
-                                                        out.println("<i>"+resultMatching.get(i).getTitle()+"</i>");
+                                                        out.println("<i>" + resultMatching.get(i).getTitle() + "</i>");
                                                         out.println("</div>");
                                                         out.println("<br>");
                                                         out.println("<br>");
-                                                 
-                                                        
+
                                                         out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
-                                                        out.println("<input type='hidden' name='id' value='"+resultMatching.get(i).getId()+"'>");
-                                                        out.println("<input type='image' src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");                                                      
+                                                        out.println("<input type='hidden' name='id' value='" + resultMatching.get(i).getId() + "'>");
+                                                        out.println("<input type='image' src=" + resultMatching.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");
                                                         out.println("<br>");
                                                         out.println("<br>");
-                                                        out.println("Prezzo: "+resultMatching.get(i).getPrice()+" €");
+                                                        out.println("Prezzo: " + resultMatching.get(i).getPrice() + " €");
                                                         out.println("<br>");
 
-                                                        for(int j=0;j<rating;j++)
-                                                        {
+                                                        for (int j = 0; j < rating; j++) {
                                                             out.println("<span class='fa fa-star checked'></span>");
                                                         }
-                                                        for(int j=rating;j<5;j++)
-                                                        {
+                                                        for (int j = rating; j < 5; j++) {
                                                             out.println("<span class='fa fa-star'></span>");
                                                         }
                                                         out.println("</br>");
@@ -206,125 +214,117 @@
 
                                             </div>
                                             <div class="tab-pane text-center" id="work">
-                                                <%  
-                                                    System.out.println("" + resultIg.size());
+                                                <%                                                    System.out.println("" + resultIg.size());
                                                     System.out.println("" + resultG2a.size());
                                                     flag = true;
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
-                                                    half =(double)resultIg.size()/ 2;
-                                                    int resto = (resultIg.size()% 2);
-                                                    i=0;
-                                                    System.out.println(""+half);
-                                                    while(i < resultIg.size()) {
-                                                        if ((i>half || i==half) && flag) {
+                                                    half = (double) resultIg.size() / 2;
+                                                    int resto = (resultIg.size() % 2);
+                                                    i = 0;
+                                                    System.out.println("" + half);
+                                                    while (i < resultIg.size()) {
+                                                        if ((i > half || i == half) && flag) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
-                                                            flag=false;
+                                                            flag = false;
                                                         }
                                                         rating = resultIg.get(i).getFeedback();
-                                                      
-                                                        
+
                                                         out.println("<div style='height:35px'>");
-                                                        out.println("<i>"+resultIg.get(i).getTitle()+"</i>");
+                                                        out.println("<i>" + resultIg.get(i).getTitle() + "</i>");
                                                         out.println("</div>");
                                                         out.println("<br>");
                                                         out.println("<br>");
-                                                        
+
                                                         out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
-                                                        out.println("<input type='hidden' name='id' value='"+resultIg.get(i).getId()+"'>");
+                                                        out.println("<input type='hidden' name='id' value='" + resultIg.get(i).getId() + "'>");
                                                         out.println("<input type='image' src=" + resultIg.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");
                                                         out.println("<br>");
-                                                        out.println("<br>");                                                        
-                                                        out.println("Prezzo: "+resultIg.get(i).getPrice()+" €");
+                                                        out.println("<br>");
+                                                        out.println("Prezzo: " + resultIg.get(i).getPrice() + " €");
                                                         out.println("</br>");
-                                                        for(int j=0;j<rating;j++)
-                                                        {
+                                                        for (int j = 0; j < rating; j++) {
                                                             out.println("<span class='fa fa-star checked'></span>");
                                                         }
-                                                        for(int j=rating;j<5;j++)
-                                                        {
+                                                        for (int j = rating; j < 5; j++) {
                                                             out.println("<span class='fa fa-star'></span>");
                                                         }
                                                         out.println("</br>");
                                                         out.println("<a href=" + resultIg.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
                                                         out.println("</form>");
                                                         out.println("<hr>");
-                                                        i=i+1;
+                                                        i = i + 1;
                                                     }
-                                                    int k=0;
-                                                    if(resto==1)
-                                                    {   
-                                                        if(resultIg.size()==1)
-                                                        {
+                                                    int k = 0;
+                                                    if (resto == 1) {
+                                                        if (resultIg.size() == 1) {
                                                             out.println("</div>");
-                                                            out.println("<div class='col-md-6'>"); 
+                                                            out.println("<div class='col-md-6'>");
                                                         }
                                                         rating = resultG2a.get(0).getFeedback();
                                                         System.out.println(resultG2a.get(0).getFeedback());
-                                                   
+
                                                         out.println("<div style='height:35px'>");
-                                                        out.println("<i>"+resultG2a.get(0).getTitle()+"</i>");
+                                                        out.println("<i>" + resultG2a.get(0).getTitle() + "</i>");
                                                         out.println("</div>");
                                                         out.println("<br>");
                                                         out.println("<br>");
-                                                        
+
                                                         out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
-                                                        out.println("<input type='hidden' name='id' value='"+resultG2a.get(0).getId()+"'>");
+                                                        out.println("<input type='hidden' name='id' value='" + resultG2a.get(0).getId() + "'>");
                                                         out.println("<input type='image' src=" + resultG2a.get(0).getImgUrl() + " class='img-rounded' width='250' height='350' />");
-                                                        out.println("Prezzo: "+resultG2a.get(0).getPrice());
                                                         out.println("<br>");
-                                                        for(int j=0;j<rating;j++)
-                                                        {
+                                                        out.println("<br>");
+                                                        out.println("Prezzo: " + resultG2a.get(0).getPrice()+ " €");
+                                                        out.println("<br>");
+                                                        for (int j = 0; j < rating; j++) {
                                                             out.println("<span class='fa fa-star checked'></span>");
                                                         }
-                                                        for(int j=rating;j<5;j++)
-                                                        {
+                                                        for (int j = rating; j < 5; j++) {
                                                             out.println("<span class='fa fa-star'></span>");
                                                         }
                                                         out.println("</br>");
                                                         out.println("<a href=" + resultG2a.get(0).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
                                                         out.println("</form>");
-                                                        out.println("<hr>");                                                        
-                                                        k=1;
+                                                        out.println("<hr>");
+                                                        k = 1;
                                                     }
                                                     out.println("</div>");
                                                     out.println("</div>");
 
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
-                                                    half = (double)resultG2a.size()/ 2;
-                                                    resto = (resultG2a.size()% 2);
-                                                    flag=true;
-                                                    i=k;
-                                                      System.out.println(""+half);
-                                                    while(i < resultG2a.size()) {
-                                                        if ( i== half || i>half && flag) {
+                                                    half = (double) resultG2a.size() / 2;
+                                                    resto = (resultG2a.size() % 2);
+                                                    flag = true;
+                                                    i = k;
+                                                    System.out.println("" + half);
+                                                    while (i < resultG2a.size()) {
+                                                        if (i == half || i > half && flag) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
-                                                            flag=false;
+                                                            flag = false;
                                                         }
-                                                        rating = resultG2a.get(i).getFeedback()/100;
-                                                        
+                                                        rating = resultG2a.get(i).getFeedback();
+
                                                         out.println("<div style='height:35px'>");
-                                                        out.println("<i>"+resultG2a.get(i).getTitle()+"</i>");
+                                                        out.println("<i>" + resultG2a.get(i).getTitle() + "</i>");
                                                         out.println("</div>");
                                                         out.println("<br>");
                                                         out.println("<br>");
-                                                 
-                                                        
+
                                                         out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
-                                                        out.println("<input type='hidden' name='id' value='"+resultG2a.get(i).getId()+"'>");
-                                                        out.println("<input type='image' src=" + resultG2a.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");                                                      
-                                                        
-                                                        out.println("Prezzo: "+resultG2a.get(i).getPrice());
+                                                        out.println("<input type='hidden' name='id' value='" + resultG2a.get(i).getId() + "'>");
+                                                        out.println("<input type='image' src=" + resultG2a.get(i).getImgUrl() + " class='img-rounded' width='250' height='350' />");
                                                         out.println("<br>");
-                                                        for(int j=0;j<rating;j++)
-                                                        {
+                                                        out.println("<br>");
+                                                        out.println("Prezzo: " + resultG2a.get(i).getPrice()+ " €");
+                                                        out.println("<br>");
+                                                        for (int j = 0; j < rating; j++) {
                                                             out.println("<span class='fa fa-star checked'></span>");
                                                         }
-                                                        for(int j=rating;j<5;j++)
-                                                        {
+                                                        for (int j = rating; j < 5; j++) {
                                                             out.println("<span class='fa fa-star'></span>");
                                                         }
                                                         out.println("</br>");
@@ -336,48 +336,41 @@
 
                                                     out.println("</div>");
                                                     out.println("</div>");
-                                                   
+
                                                 %>
                                             </div>
                                             <div class="tab-pane text-center" id="shows">
-                                                <%
-                                                    
-                                                  
-                                                    out.println("<div class='row'>");
+                                                <%                                                    out.println("<div class='row'>");
                                                     out.println("<div class='col-md-12'>");
 
-                                                    
-                                                        out.println("<h3>Video più visualizzato</h3>");  
-                                                        String x = resultYoutube.get(0).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(0).getLinkRef().substring(31, resultYoutube.get(0).getLinkRef().length());
-                                                        out.println("<iframe width='550' height='350' src="+x+" frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
-                                                        out.println("<hr>");
-                                                        out.println("<h3>GamePlay</h3>");  
-                                                        x = resultYoutube.get(1).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(1).getLinkRef().substring(31, resultYoutube.get(1).getLinkRef().length());
-                                                        out.println("<iframe width='550' height='350' src="+x+" frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
-                                                        out.println("<hr>");
-                                                        out.println("</div>");
-                                                        out.println("</div>");
+                                                    out.println("<h3>Video più visualizzato</h3>");
+                                                    String x = resultYoutube.get(0).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(0).getLinkRef().substring(31, resultYoutube.get(0).getLinkRef().length());
+                                                    out.println("<iframe width='550' height='350' src=" + x + " frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
+                                                    out.println("<hr>");
+                                                    out.println("<h3>GamePlay</h3>");
+                                                    x = resultYoutube.get(1).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(1).getLinkRef().substring(31, resultYoutube.get(1).getLinkRef().length());
+                                                    out.println("<iframe width='550' height='350' src=" + x + " frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
+                                                    out.println("<hr>");
+                                                    out.println("</div>");
+                                                    out.println("</div>");
 
                                                 %>
                                             </div>
                                             <div class="tab-pane text-center" id="reviews">
-                                                <%
-                                                                                                      
-                                                    out.println("<div class='row'>");
+                                                <%                                                    out.println("<div class='row'>");
                                                     out.println("<div class='col-md-12'>");
-                                                    i=0;
-                                                    while(i < resultEveryEye.size()) {
-                                                        
-                                                        out.println("<textarea style='overflow-y:scroll' rows='10' cols='100'>"); 
-                                                                                                              
+                                                    i = 0;
+                                                    while (i < resultEveryEye.size()) {
+
+                                                        out.println("<textarea style='overflow-y:scroll' rows='10' cols='100'>");
+
                                                         out.println(resultEveryEye.get(i).getRewiew());
-                                                        
+
                                                         out.println("</textarea>");
-                                              
-                                                       
+
                                                         out.println("<p> Pubblicato da:");
-                                                        out.println(resultEveryEye.get(i).getPublisher());                                                        
-                                                        out.println("</p>"); 
+                                                        out.println(resultEveryEye.get(i).getPublisher());
+                                                        out.println("</p>");
                                                         out.println("<hr>");
                                                         i++;
                                                     }

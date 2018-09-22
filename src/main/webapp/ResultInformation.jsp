@@ -90,7 +90,7 @@
                         <div class="row">
                             <div class="profile">
                                 <div class="avatar">
-                                    <img src="assets/img/christian.jpg" alt="Circle Image" class="img-circle img-responsive img-raised">
+                                    <img src="Immagini/Logo.jpg" alt="Circle Image" class="img-circle img-responsive img-raised">
                                 </div>
                                 <div class="name">
                                     <h3 class="title"><%= resultInformation.getTitle() %></h3>

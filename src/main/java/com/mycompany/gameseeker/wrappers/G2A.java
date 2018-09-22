@@ -176,8 +176,6 @@ public class G2A {
                 if (requisiti.length > 1) {
                     requisitiConsigliati = "Requisiti raccomandati" + requisiti[1];
                 }
-                System.out.println(requisitiConsigliati);
-                System.out.println(requisitiMinimi);
             }
 
             

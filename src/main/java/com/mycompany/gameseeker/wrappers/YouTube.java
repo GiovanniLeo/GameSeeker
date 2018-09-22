@@ -23,6 +23,7 @@ public class YouTube {
         String url = "https://www.youtube.com/results?search_query=";
         String gameUrl = url + Utility.normalizeSearchQuery(searchQuery, false) + "&sp=CAMSAhABQgQIABIA";
         ArrayList<Result> results = new ArrayList<>();
+  
        
         try {
 
@@ -37,10 +38,11 @@ public class YouTube {
                 Result res = new Result(Utility.checkRomanNumber(searchQuery) +" "+ VD, mostViewVideoLink);
                 res.setType(Utility.YT);
                 results.add(res);
+                
 
             }
 
-            gameUrl = url + Utility.normalizeSearchQuery(searchQuery + " gameplay", false)
+            gameUrl = url + Utility.normalizeSearchQuery(searchQuery + " walkthrough", false)
                     + "&sp=CAMSAhABQgQIABIA";
 
             doc = Jsoup.connect(gameUrl)
@@ -54,7 +56,9 @@ public class YouTube {
                 Result res = new Result(Utility.checkRomanNumber(searchQuery) +" "+ GP, mostViewGameplayLink);
                 res.setType(Utility.YT);
                 results.add(res);
+              
             }
+            
 
         } catch (Exception e) {
             e.printStackTrace();

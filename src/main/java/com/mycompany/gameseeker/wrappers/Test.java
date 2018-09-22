@@ -128,10 +128,10 @@ public class Test {
                 System.out.println("Varianza -->"+sumOfSquare/sum);
 
                */
-		/*YouTube yt = new YouTube();
+		YouTube yt = new YouTube();
 		ArrayList<Result>map = yt.searchResults("Dark Souls III");
 		System.out.println(map.get(0).getTitle());
-		System.out.println(map.get(1).getTitle());*/
+		System.out.println(map.get(1).getTitle());
 		/*
 		long end = System.currentTimeMillis();
 		double total = (end-start)/1000;
@@ -150,7 +150,7 @@ public class Test {
               for (int i = 0; i < titles.size(); i++) {
                   System.out.println(titles.get(i));
             }*/
-            System.out.println("G2A");
+         /*   System.out.println("G2A");
           ArrayList<Result> result = new ArrayList<>();
           result = g2a.searchResults("Grand Theft Auto V");/*
             for (int i = 0; i < result.size(); i++) {

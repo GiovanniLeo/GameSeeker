@@ -5,22 +5,18 @@
  */
 package com.mycompany.gameseeker.mediator;
 
-import com.mongodb.DBCollection;
+
 import com.mycompany.gameseeker.dbResurces.DBResurces;
 import com.mycompany.gameseeker.task.*;
 import com.mycompany.gameseeker.mongoDB.Result;
 import com.mycompany.gameseeker.utility.Utility;
-import com.mycompany.gameseeker.wrappers.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import org.apache.commons.text.similarity.LevenshteinDetailedDistance;
 import org.apache.commons.text.similarity.LevenshteinResults;
 import org.bson.types.ObjectId;
@@ -31,6 +27,7 @@ import org.mongodb.morphia.query.Query;
  *
  * @author johnn
  */
+
 public class Mediator {
 
     private ArrayList<Result> igResults;
@@ -43,9 +40,9 @@ public class Mediator {
     private ArrayList<Result> resultsMatch;
 
     private static ExecutorService exec = Executors.newCachedThreadPool();
-    private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
     
-
+    
+    
     public Mediator() {
         igResults = new ArrayList<>();
         g2aResults = new ArrayList<>();
@@ -55,11 +52,13 @@ public class Mediator {
         db = new DBResurces("com.mycompany.gameseeker.mongoDB",
                 "GameSeekerDB");
         ds = db.getDatastore();
+      
+      
+        
     }
-
+    
     private void getDataFromSites(String searchQuery) {
-        /*ScheduledFuture scheduledFuture = scheduledExecutorService
-                .schedule(new DatabaseCleanTask(ds),6,TimeUnit.SECONDS);*/
+       
         getDataFromAmazon(searchQuery);
         getDataFromEveryeye(searchQuery);
         getDataFromInstantGaming(searchQuery);

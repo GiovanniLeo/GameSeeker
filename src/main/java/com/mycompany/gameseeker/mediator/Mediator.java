@@ -151,7 +151,7 @@ public class Mediator {
             for (int i = 0; i < igResults.size(); i++) {
                 for (int j = 0; j < g2aResults.size(); j++) {
 
-                    if (igResults.size() == 0 || g2aResults.size() == 0) {
+                    if (igResults.isEmpty() || g2aResults.isEmpty()) {
                         break;
                     }
 
@@ -215,6 +215,13 @@ public class Mediator {
                                         + descrizione + "\n" + feedback + "\n" + releaseDate + "\n--------------");
                                 igResults.remove(i);
                                 g2aResults.remove(j);
+                                if(i > 0 ){
+                                i--;
+                                }
+                                if(j > 0)
+                                {
+                                    j--;
+                                }
                             }
                         }
 

@@ -38,7 +38,7 @@ private Datastore ds;
                Query<Result> allResult = ds.createQuery(Result.class);
                ds.delete(allResult);
             }
-        }, 0, 6, TimeUnit.HOURS);
+        }, 6, 6, TimeUnit.HOURS);
         
     }
    

@@ -5,7 +5,6 @@
  */
 package com.mycompany.gameseeker.mediator;
 
-
 import com.mycompany.gameseeker.dbResurces.DBResurces;
 import com.mycompany.gameseeker.task.*;
 import com.mycompany.gameseeker.mongoDB.Result;
@@ -27,7 +26,6 @@ import org.mongodb.morphia.query.Query;
  *
  * @author johnn
  */
-
 public class Mediator {
 
     private ArrayList<Result> igResults;
@@ -40,9 +38,7 @@ public class Mediator {
     private ArrayList<Result> resultsMatch;
 
     private static ExecutorService exec = Executors.newCachedThreadPool();
-    
-    
-    
+
     public Mediator() {
         igResults = new ArrayList<>();
         g2aResults = new ArrayList<>();
@@ -52,13 +48,11 @@ public class Mediator {
         db = new DBResurces("com.mycompany.gameseeker.mongoDB",
                 "GameSeekerDB");
         ds = db.getDatastore();
-      
-      
-        
+
     }
-    
+
     private void getDataFromSites(String searchQuery) {
-       
+
         getDataFromAmazon(searchQuery);
         getDataFromEveryeye(searchQuery);
         getDataFromInstantGaming(searchQuery);
@@ -134,7 +128,7 @@ public class Mediator {
                     lowerG2ATitle = g2aResults.get(j).getTitle().toLowerCase();
                     levDistance = lev.apply(loweIgTitle, lowerG2ATitle);
                     distance = levDistance.getDistance();
-                     //System.out.println(loweIgTitle + "\n" + lowerG2ATitle +"\nDistance->"+distance+ "\n-----------");
+                    //System.out.println(loweIgTitle + "\n" + lowerG2ATitle +"\nDistance->"+distance+ "\n-----------");
                     distanceSum += distance;
                     count++;
 
@@ -182,22 +176,18 @@ public class Mediator {
                                 plattform = igResults.get(i).getPlattformTitle();
                                 title = igResults.get(i).getTitle();
                                 descrizione = igResults.get(i).getDescription();
-                                feedback = (igResults.get(i).getFeedback() + g2aResults.get(j).getFeedback())/2;
+                                feedback = (igResults.get(i).getFeedback() + g2aResults.get(j).getFeedback()) / 2;
                                 releaseDate = igResults.get(i).getReleaseDate();
-                                
+
                                 if (igResults.get(i).getRequisitiMinimi() == null) {
                                     requisitiMinimi = g2aResults.get(j).getRequisitiMinimi();
-                                }
-                                else
-                                {
+                                } else {
                                     requisitiMinimi = igResults.get(i).getRequisitiMinimi();
                                 }
-                                
+
                                 if (igResults.get(i).getRequisitiConsigliati() == null) {
                                     requisistiConsigliati = g2aResults.get(j).getRequisitiConsigliati();
-                                }
-                                else
-                                {
+                                } else {
                                     requisistiConsigliati = igResults.get(i).getRequisitiConsigliati();
                                 }
 
@@ -215,11 +205,10 @@ public class Mediator {
                                         + descrizione + "\n" + feedback + "\n" + releaseDate + "\n--------------");
                                 igResults.remove(i);
                                 g2aResults.remove(j);
-                                if(i > 0 ){
-                                i--;
+                                if (i > 0) {
+                                    i--;
                                 }
-                                if(j > 0)
-                                {
+                                if (j > 0) {
                                     j--;
                                 }
                             }
@@ -251,8 +240,9 @@ public class Mediator {
     public boolean checkElements(String searchQuery) {
 
         searchQuery = Utility.checkRomanNumber(searchQuery);
-        System.out.println(searchQuery);
+        searchQuery = Utility.clearSpecialCharacterWithDigits(searchQuery);
         searchQuery = searchQuery.trim();
+        System.out.println("-----"+searchQuery+"------------");
         Query<Result> query = ds.find(Result.class).field("title").
                 containsIgnoreCase(searchQuery);
 
@@ -316,24 +306,32 @@ public class Mediator {
     }
 
     private void saveAllData() {
-        for (int i = 0; i < resultsMatch.size(); i++) {
-            ds.save(resultsMatch.get(i));
+        if (resultsMatch != null) {
+            for (int i = 0; i < resultsMatch.size(); i++) {
+                ds.save(resultsMatch.get(i));
+            }
         }
 
-        for (int i = 0; i < youTubeResults.size(); i++) {
-            ds.save(youTubeResults.get(i));
+        if (youTubeResults != null) {
+            for (int i = 0; i < youTubeResults.size(); i++) {
+                ds.save(youTubeResults.get(i));
+            }
         }
 
-        for (int i = 0; i < igResults.size(); i++) {
-            ds.save(igResults.get(i));
+        if (igResults != null) {
+            for (int i = 0; i < igResults.size(); i++) {
+                ds.save(igResults.get(i));
+            }
         }
-
-        for (int i = 0; i < g2aResults.size(); i++) {
-            ds.save(g2aResults.get(i));
+        if (g2aResults != null) {
+            for (int i = 0; i < g2aResults.size(); i++) {
+                ds.save(g2aResults.get(i));
+            }
         }
-
-        for (int i = 0; i < everyeyeResults.size(); i++) {
-            ds.save(everyeyeResults.get(i));
+        if (everyeyeResults != null) {
+            for (int i = 0; i < everyeyeResults.size(); i++) {
+                ds.save(everyeyeResults.get(i));
+            }
         }
 
         if (amazonResult != null) {
@@ -349,11 +347,10 @@ public class Mediator {
                 .field("type").equalIgnoreCase(type);
         return query;
     }
-    
-    public Result getElementByIdFromDB(String id)
-    {
+
+    public Result getElementByIdFromDB(String id) {
         ObjectId idObj = new ObjectId(id);
-        Result res = ds.get(Result.class,idObj);
+        Result res = ds.get(Result.class, idObj);
         return res;
     }
 
@@ -380,7 +377,6 @@ public class Mediator {
     public ArrayList<Result> getResultsMatch() {
         return resultsMatch;
     }
-    
 
     private void debug() {
         for (int i = 0; i < resultsMatch.size(); i++) {

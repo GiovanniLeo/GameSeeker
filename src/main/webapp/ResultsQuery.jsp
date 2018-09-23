@@ -18,7 +18,7 @@
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title>Profile Page - Material Kit by Creative Tim</title>
+        <title>Game Seeker</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -61,7 +61,7 @@
                             <form action="MinPriceTest" method="GET" role="form" class="form-horizontal">
                             <div class="form-group">
                     
-                          <input type="text" name="titolo" value="" placeholder="Ricerca" class="form-control " style="text-align:center;" type="submit"/>                            
+                          <input type="text" name="titolo" value="" placeholder="Ricerca" class="form-control " style="text-align:center;color:white" type="submit"/>                            
                                                    
                             </div>
                             </form>
@@ -127,7 +127,7 @@
                                             <li class="active">
                                                 <a href="#studio" role="tab" data-toggle="tab">
                                                     <i class="material-icons">star</i>
-                                                    Minor prezzo
+                                                    Best
                                                 </a>
                                             </li>
                                             <li>
@@ -341,9 +341,10 @@
                                                 %>
                                             </div>
                                             <div class="tab-pane text-center" id="shows">
-                                                <%                                                    out.println("<div class='row'>");
+                                                <% 
+                                                    out.println("<div class='row'>");
                                                     out.println("<div class='col-md-12'>");
-
+                                                   
                                                     out.println("<h3>Video più visualizzato</h3>");
                                                     String x = resultYoutube.get(0).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(0).getLinkRef().substring(31, resultYoutube.get(0).getLinkRef().length());
                                                     out.println("<iframe width='550' height='350' src=" + x + " frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
@@ -358,13 +359,20 @@
                                                 %>
                                             </div>
                                             <div class="tab-pane text-center" id="reviews">
-                                                <%                                                    out.println("<div class='row'>");
-                                                    out.println("<div class='col-md-12'>");
+                                                <%  
+                                                    out.println("<div class='row'>");
+                                                    out.println("<div class='col-md-12' style='text-align:left'>");
+                                                    if(resultEveryEye.isEmpty())
+                                                    {
+                                                       out.println("<b>Nessuna recensione presente</b>"); 
+                                                    }
+                                                    else
+                                                    {
                                                     i = 0;
                                                     while (i < resultEveryEye.size()) {
-
-                                                        out.println("<textarea style='overflow-y:scroll' rows='10' cols='100'>");
-
+                                                        
+                                                        out.println("<i>"+resultEveryEye.get(i).getTitle()+"</i>");
+                                                        out.println("<textarea style='overflow-y:scroll;resize:none;border:none' rows='10' cols='100' >");                                                       
                                                         out.println(resultEveryEye.get(i).getRewiew());
 
                                                         out.println("</textarea>");
@@ -374,6 +382,7 @@
                                                         out.println("</p>");
                                                         out.println("<hr>");
                                                         i++;
+                                                    }
                                                     }
                                                     out.println("</div>");
                                                     out.println("</div>");
@@ -396,32 +405,11 @@
         <footer class="footer">
             <div class="container">
                 <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="http://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://presentation.creative-tim.com">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
+
                 </nav>
-                <div class="copyright pull-right">
-                    &copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative Tim
-                </div>
+                        <div class="copyright pull-right">
+                            &copy; 2018, made with  by <i class="fa fa-heart heart"></i><a href="https://www.linkedin.com/in/raffaele-ceruso-585a0612b/"><i> Ceruso </i></a>&<a href="https://www.linkedin.com/in/giovanni-leo-b223a712b/"><i> Leo</i></a>
+                        </div>
             </div>
         </footer>
 

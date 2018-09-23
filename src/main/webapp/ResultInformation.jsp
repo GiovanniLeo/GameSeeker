@@ -112,7 +112,7 @@
                                  
                                     out.println("<div class='col-md-6'>");
                                     out.println("<img src=" + resultInformation.getImgUrl() + " class='img-rounded' width='250' height='350' style= 'margin-bottom: 50px;' />");
-                                    out.println("<a href=" + resultInformation.getLinkRef() + " class='btn btn-default'>Buy Now</a>");
+                                    out.println("<a href=" + resultInformation.getLinkRef() + " class='btn btn-default' target='blank'>Buy Now</a>");
                                     out.println("</div>");
 
                                     out.println("<div class='col-md-6'>");

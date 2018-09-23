@@ -96,6 +96,7 @@
             ArrayList<Result> resultG2a = (ArrayList<Result>) request.getAttribute("resultG2a");
             ArrayList<Result> resultYoutube = (ArrayList<Result>) request.getAttribute("resultYoutube");
             ArrayList<Result> resultEveryEye = (ArrayList<Result>) request.getAttribute("resultEveryEye");
+            System.out.println("Init");
 
         %>
         <div class="wrapper">
@@ -168,6 +169,14 @@
                                                         out.println("<div class='col-md-12'>");
                                                     }
                                                     int i = 0;
+                                                    if(resultMatching.get(0)==null)
+                                                    {
+                                                       out.println("<p style='text-align:center'>Nessun elemento trovato</p>");
+                                                    }
+                                                   
+                                                    else
+                                                    {
+                                                
                                                     while (i < resultMatching.size()) {
                                                         if (i == half || i == half + 1 && flag == false) {
                                                             out.println("</div>");
@@ -203,10 +212,11 @@
                                                         }
                                                         out.println("</br>");
 
-                                                        out.println("<a href=" + resultMatching.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
+                                                        out.println("<a href=" + resultMatching.get(i).getLinkRef() + " class='btn btn-default' target='blank'>Buy Now</a>");
                                                         out.println("</form>");
                                                         out.println("<hr>");
                                                         i++;
+                                                    }
                                                     }
                                                     out.println("</div>");
                                                     out.println("</div>");
@@ -215,15 +225,25 @@
 
                                             </div>
                                             <div class="tab-pane text-center" id="work">
-                                                <%                                                    System.out.println("" + resultIg.size());
-                                                    System.out.println("" + resultG2a.size());
+                                                <%  
+                                                    System.out.println("Size Ig " + resultIg.size());
+                                                    System.out.println("Size G2a " + resultG2a.size());
                                                     flag = true;
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
                                                     half = (double) resultIg.size() / 2;
                                                     int resto = (resultIg.size() % 2);
                                                     i = 0;
-                                                    System.out.println("" + half);
+                                                    int k = 0;
+                                                    if(resultIg.get(0)==null && resultG2a.get(0)==null)
+                                                    {
+                                                     //   out.println("<p style='text-align:center'>Nessun elemento trovato</p>");
+                                                    }
+                                                    if(resultIg.get(0)==null)
+                                                    {
+                                                        
+                                                    }
+                                                    else{
                                                     while (i < resultIg.size()) {
                                                         if ((i > half || i == half) && flag) {
                                                             out.println("</div>");
@@ -252,19 +272,21 @@
                                                             out.println("<span class='fa fa-star'></span>");
                                                         }
                                                         out.println("</br>");
-                                                        out.println("<a href=" + resultIg.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
+                                                        out.println("<a href=" + resultIg.get(i).getLinkRef() + " class='btn btn-default' target='blank'>Buy Now</a>");
                                                         out.println("</form>");
                                                         out.println("<hr>");
                                                         i = i + 1;
                                                     }
-                                                    int k = 0;
+                                                   
+                                                    
+                                                    
                                                     if (resto == 1) {
-                                                        if (resultIg.size() == 1) {
+                                                        if (resultIg.size() == 1 && resultIg.get(0) !=null) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
                                                         }
                                                         rating = resultG2a.get(0).getFeedback();
-                                                        System.out.println(resultG2a.get(0).getFeedback());
+                                                       
 
                                                         out.println("<div style='height:35px'>");
                                                         out.println("<i>" + resultG2a.get(0).getTitle() + "</i>");
@@ -286,21 +308,27 @@
                                                             out.println("<span class='fa fa-star'></span>");
                                                         }
                                                         out.println("</br>");
-                                                        out.println("<a href=" + resultG2a.get(0).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
+                                                        out.println("<a href=" + resultG2a.get(0).getLinkRef() + " class='btn btn-default' target='blank'>Buy Now</a>");
                                                         out.println("</form>");
                                                         out.println("<hr>");
                                                         k = 1;
                                                     }
                                                     out.println("</div>");
                                                     out.println("</div>");
-
+                                                    }
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
                                                     half = (double) resultG2a.size() / 2;
                                                     resto = (resultG2a.size() % 2);
                                                     flag = true;
+                                                    
                                                     i = k;
-                                                    System.out.println("" + half);
+                                                    
+                                                    if(resultG2a.get(0)==null)
+                                                    {
+                                                        System.out.println("Nessun elemento trovato");
+                                                    }
+                                                    else{                                                                                            
                                                     while (i < resultG2a.size()) {
                                                         if (i == half || i > half && flag) {
                                                             out.println("</div>");
@@ -329,12 +357,12 @@
                                                             out.println("<span class='fa fa-star'></span>");
                                                         }
                                                         out.println("</br>");
-                                                        out.println("<a href=" + resultG2a.get(i).getLinkRef() + " class='btn btn-default'>Buy Now</a>");
+                                                        out.println("<a href=" + resultG2a.get(i).getLinkRef() + " class='btn btn-default' target='blank'>Buy Now</a>");
                                                         out.println("</form>");
                                                         out.println("<hr>");
                                                         i++;
                                                     }
-
+                                                    }
                                                     out.println("</div>");
                                                     out.println("</div>");
 
@@ -342,20 +370,44 @@
                                             </div>
                                             <div class="tab-pane text-center" id="shows">
                                                 <% 
+                                                    System.out.println("Tras");
+                                                    String x;
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-12'>");
-                                                   
+                                                    
+                                                    
+                                                    if(resultYoutube.size()>1)
+                                                    {
+                                                    if(resultYoutube.get(0)==null)
+                                                    {
+                                                    System.out.println("Youtube è vagant");
+                                                    }
+                                                    else
+                                                    {
                                                     out.println("<h3>Video più visualizzato</h3>");
-                                                    String x = resultYoutube.get(0).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(0).getLinkRef().substring(31, resultYoutube.get(0).getLinkRef().length());
+                                                    x = resultYoutube.get(0).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(0).getLinkRef().substring(31, resultYoutube.get(0).getLinkRef().length());
                                                     out.println("<iframe width='550' height='350' src=" + x + " frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
                                                     out.println("<hr>");
                                                     out.println("<h3>GamePlay</h3>");
+                                                    }
+                                                    if(resultYoutube.get(1)==null)
+                                                    {
+                                                    System.out.println("Youtube è vagant");
+                                                    }
+                                                    else
+                                                    {                                                    
                                                     x = resultYoutube.get(1).getLinkRef().substring(0, 23) + "embed/" + resultYoutube.get(1).getLinkRef().substring(31, resultYoutube.get(1).getLinkRef().length());
                                                     out.println("<iframe width='550' height='350' src=" + x + " frameborder='0' allow='autoplay'; encrypted-media allowfullscreen></iframe>");
                                                     out.println("<hr>");
+                                                    }
+                                                    }
+                                                    else
+                                                    {
+                                                        //out.println("<p style='text-align:center'>Nessun elemento trovato</p>");
+                                                    }
                                                     out.println("</div>");
                                                     out.println("</div>");
-
+                                                    System.out.println("Esc");
                                                 %>
                                             </div>
                                             <div class="tab-pane text-center" id="reviews">
@@ -364,7 +416,7 @@
                                                     out.println("<div class='col-md-12' style='text-align:left'>");
                                                     if(resultEveryEye.isEmpty())
                                                     {
-                                                       out.println("<b>Nessuna recensione presente</b>"); 
+                                                       out.println("<p style='text-align:center'>Nessun elemento trovato</p>"); 
                                                     }
                                                     else
                                                     {

@@ -53,7 +53,8 @@ public class MinPriceTest extends HttpServlet {
         ArrayList<Result> resultYoutube = new ArrayList<>();
         ArrayList<Result> resultEveryEye = new ArrayList<>();
         Result resultAmazon;
-
+        Result resultNull = null;
+        
         String titolo = request.getParameter("titolo");
         Mediator md = new Mediator();
         System.out.println(titolo);
@@ -68,17 +69,23 @@ public class MinPriceTest extends HttpServlet {
 
         ServletContext context = getServletContext();
 
-
-        if (resultMatching.size() == 0) {
+        if(resultG2a.isEmpty())
+            {
+               System.out.println("g2a è null");
+               resultG2a = new ArrayList();
+               resultG2a.add(resultNull);
+            }
+        if( resultIg.isEmpty())
+            {   
+                resultIg = new ArrayList();
+                resultIg.add(resultNull);
+            }
+        
+        if (resultMatching.isEmpty()) {
             Result minG2a = null;
             Result minIg = null;
-            if(resultG2a==null)
-            {
-               md.selectElements("");
-               resultG2a = md.getG2aResults();
-               System.out.println("Stringa vuota");
-            }
-            if (resultG2a.size() != 0) {
+         
+            if (!resultG2a.isEmpty() && resultG2a.get(0)!=null) {
                 minG2a = resultG2a.get(0);
                 for (int i = 0; i < resultG2a.size(); i++) {
                     if (resultG2a.get(i).getPrice() < minG2a.getPrice()) {
@@ -86,12 +93,7 @@ public class MinPriceTest extends HttpServlet {
                     }
                 }
             }
-             if(resultIg==null)
-            {
-               md.selectElements("");
-               resultIg = md.getIgResults();
-            }
-             if (resultIg.size() != 0) {
+             if (!resultIg.isEmpty() && resultIg.get(0)!=null) {
                 minIg = resultIg.get(0);
                 for (int i = 0; i < resultIg.size(); i++) {
                     if (resultIg.get(i).getPrice() < minIg.getPrice()) {
@@ -110,9 +112,14 @@ public class MinPriceTest extends HttpServlet {
             {
                 resultMatching.add(minIg);
             }
-            else
+            else if(minIg == null && minG2a != null)
             {
                 resultMatching.add(minG2a);
+            }
+            else
+            {
+                System.out.println("Entrambi null");
+                resultMatching.add(resultNull);
             }
         }
         
@@ -122,6 +129,7 @@ public class MinPriceTest extends HttpServlet {
         request.setAttribute("resultYoutube", resultYoutube);
         request.setAttribute("resultEveryEye", resultEveryEye);
         RequestDispatcher dispatcher = context.getRequestDispatcher("/ResultsQuery.jsp");
+
         dispatcher.forward(request, response);
 
     }

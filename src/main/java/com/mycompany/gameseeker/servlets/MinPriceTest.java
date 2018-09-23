@@ -128,6 +128,7 @@ public class MinPriceTest extends HttpServlet {
         request.setAttribute("resultG2a", resultG2a);
         request.setAttribute("resultYoutube", resultYoutube);
         request.setAttribute("resultEveryEye", resultEveryEye);
+        request.setAttribute("resultAmazon", resultAmazon);
         RequestDispatcher dispatcher = context.getRequestDispatcher("/ResultsQuery.jsp");
 
         dispatcher.forward(request, response);

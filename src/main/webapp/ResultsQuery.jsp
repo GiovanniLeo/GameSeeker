@@ -96,7 +96,8 @@
             ArrayList<Result> resultG2a = (ArrayList<Result>) request.getAttribute("resultG2a");
             ArrayList<Result> resultYoutube = (ArrayList<Result>) request.getAttribute("resultYoutube");
             ArrayList<Result> resultEveryEye = (ArrayList<Result>) request.getAttribute("resultEveryEye");
-            System.out.println("Init");
+            Result resultAmazon = (Result) request.getAttribute("resultAmazon");
+            
 
         %>
         <div class="wrapper">
@@ -265,6 +266,8 @@
                                                         out.println("<br>");
                                                         out.println("Prezzo: " + resultIg.get(i).getPrice() + " €");
                                                         out.println("</br>");
+                                                        out.println("Versione: Digitale");
+                                                        out.println("</br>");                                                        
                                                         for (int j = 0; j < rating; j++) {
                                                             out.println("<span class='fa fa-star checked'></span>");
                                                         }
@@ -301,6 +304,8 @@
                                                         out.println("<br>");
                                                         out.println("Prezzo: " + resultG2a.get(0).getPrice()+ " €");
                                                         out.println("<br>");
+                                                        out.println("Versione: Digitale");
+                                                        out.println("</br>");                                                         
                                                         for (int j = 0; j < rating; j++) {
                                                             out.println("<span class='fa fa-star checked'></span>");
                                                         }
@@ -350,6 +355,8 @@
                                                         out.println("<br>");
                                                         out.println("Prezzo: " + resultG2a.get(i).getPrice()+ " €");
                                                         out.println("<br>");
+                                                        out.println("Versione: Digitale");
+                                                        out.println("</br>");                                                         
                                                         for (int j = 0; j < rating; j++) {
                                                             out.println("<span class='fa fa-star checked'></span>");
                                                         }
@@ -363,6 +370,43 @@
                                                         i++;
                                                     }
                                                     }
+                                                    //se non è null
+                                                    if(resultAmazon!=null)
+                                                    {                                         
+                                                        out.println("</div>");
+                                                        out.println("<div class='col-md-6'>");
+                                                          
+                                                        
+                                                        rating = resultAmazon.getFeedback();
+                                                        rating = 4;
+                                                        
+                                                        out.println("<div style='height:35px'>");
+                                                        out.println("<i>" + resultG2a.get(0).getTitle() + "</i>");
+                                                        out.println("</div>");
+                                                        out.println("<br>");
+                                                        out.println("<br>");
+
+                                                        out.println("<form action='InformationResult' method='GET' role='form' class='form-horizontal'>");
+                                                        out.println("<input type='hidden' name='id' value='" + resultAmazon.getId() + "'>");
+                                                        out.println("<input type='image' src=" + resultAmazon.getImgUrl() + " class='img-rounded' width='250' height='350' />");
+                                                        out.println("<br>");
+                                                        out.println("<br>");
+                                                        out.println("Prezzo: " + resultAmazon.getPrice()+ " €");
+                                                        out.println("<br>");
+                                                        out.println("Versione: Fisica");
+                                                        out.println("</br>");                                                         
+                                                        for (int j = 0; j < rating; j++) {
+                                                            out.println("<span class='fa fa-star checked'></span>");
+                                                        }
+                                                        for (int j = rating; j < 5; j++) {
+                                                            out.println("<span class='fa fa-star'></span>");
+                                                        }
+                                                        out.println("</br>");
+                                                        out.println("<a href=" + resultAmazon.getLinkRef() + " class='btn btn-default' target='blank'>Buy Now</a>");
+                                                        out.println("</form>");
+                                                        out.println("<hr>");
+                                                        
+                                                    }                                               
                                                     out.println("</div>");
                                                     out.println("</div>");
 

@@ -282,12 +282,17 @@
                                                     }
                                                    
                                                     
-                                                    
+                                                    System.out.println("Arrivato qui");
                                                     if (resto == 1) {
                                                         if (resultIg.size() == 1 && resultIg.get(0) !=null) {
                                                             out.println("</div>");
                                                             out.println("<div class='col-md-6'>");
                                                         }
+                                                    if(resultG2a.get(0)==null)
+                                                    {
+                                                        System.out.println("Nessun elemento trovato");
+                                                    }
+                                                    else{                                                    
                                                         rating = resultG2a.get(0).getFeedback();
                                                        
 
@@ -317,10 +322,10 @@
                                                         out.println("</form>");
                                                         out.println("<hr>");
                                                         k = 1;
-                                                    }
+                                                    
                                                     out.println("</div>");
                                                     out.println("</div>");
-                                                    }
+                                                   
                                                     out.println("<div class='row'>");
                                                     out.println("<div class='col-md-6'>");
                                                     half = (double) resultG2a.size() / 2;
@@ -328,12 +333,7 @@
                                                     flag = true;
                                                     
                                                     i = k;
-                                                    
-                                                    if(resultG2a.get(0)==null)
-                                                    {
-                                                        System.out.println("Nessun elemento trovato");
-                                                    }
-                                                    else{                                                                                            
+                                                                                                                                                
                                                     while (i < resultG2a.size()) {
                                                         if (i == half || i > half && flag) {
                                                             out.println("</div>");
@@ -370,6 +370,8 @@
                                                         i++;
                                                     }
                                                     }
+                                                    }
+                                                    }
                                                     //se non è null
                                                     if(resultAmazon!=null)
                                                     {                                         
@@ -381,7 +383,7 @@
                                                         rating = 4;
                                                         
                                                         out.println("<div style='height:35px'>");
-                                                        out.println("<i>" + resultG2a.get(0).getTitle() + "</i>");
+                                                        out.println("<i>" + resultAmazon.getTitle() + "</i>");
                                                         out.println("</div>");
                                                         out.println("<br>");
                                                         out.println("<br>");

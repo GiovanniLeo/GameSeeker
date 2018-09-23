@@ -72,6 +72,12 @@ public class MinPriceTest extends HttpServlet {
         if (resultMatching.size() == 0) {
             Result minG2a = null;
             Result minIg = null;
+            if(resultG2a==null)
+            {
+               md.selectElements("");
+               resultG2a = md.getG2aResults();
+               System.out.println("Stringa vuota");
+            }
             if (resultG2a.size() != 0) {
                 minG2a = resultG2a.get(0);
                 for (int i = 0; i < resultG2a.size(); i++) {
@@ -80,7 +86,12 @@ public class MinPriceTest extends HttpServlet {
                     }
                 }
             }
-            if (resultIg.size() != 0) {
+             if(resultIg==null)
+            {
+               md.selectElements("");
+               resultIg = md.getIgResults();
+            }
+             if (resultIg.size() != 0) {
                 minIg = resultIg.get(0);
                 for (int i = 0; i < resultIg.size(); i++) {
                     if (resultIg.get(i).getPrice() < minIg.getPrice()) {

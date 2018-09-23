@@ -17,7 +17,7 @@
         <link rel="icon" type="image/png" href="../assets/img/favicon.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title>Profile Page - Material Kit by Creative Tim</title>
+        <title>Game Seeker</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -54,7 +54,7 @@
                         <li>
                             <form action="MinPriceTest" method="GET" role="form" class="form-horizontal">
                             <div class="form-group">
-                            <input type="text" name="titolo" value="" placeholder="Ricerca" class="form-control " style="text-align:center;" type="submit"/>                            
+                            <input type="text" name="titolo" value="" placeholder="Ricerca" class="form-control " style="text-align:center;color:white" type="submit"/>                            
                                                    
                             </div>
                             </form>
@@ -155,32 +155,10 @@
         <footer class="footer">
             <div class="container">
                 <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="http://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://presentation.creative-tim.com">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
                 </nav>
-                <div class="copyright pull-right">
-                    &copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative Tim
-                </div>
+                        <div class="copyright pull-right">
+                            &copy; 2018, made with  by <i class="fa fa-heart heart"></i><a href="https://www.linkedin.com/in/raffaele-ceruso-585a0612b/"><i> Ceruso </i></a>&<a href="https://www.linkedin.com/in/giovanni-leo-b223a712b/"><i> Leo</i></a>
+                        </div>
             </div>
         </footer>
 

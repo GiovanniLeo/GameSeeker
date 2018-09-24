@@ -66,14 +66,12 @@ public class MinPriceTest extends HttpServlet {
         resultYoutube = md.getYouTubeResults();
         resultEveryEye = md.getEveryeyeResults();
         resultAmazon = md.getAmazonResult();
-        System.out.println("matching size"+resultMatching.size());
-        System.out.println("g2a prima"+resultG2a.size());
-        System.out.println("ig prima"+resultIg.size());
+
         ServletContext context = getServletContext();
 
-        if(resultG2a.isEmpty())
+        if(resultG2a == null || resultG2a.isEmpty())
             {
-               System.out.println("g2a è null");
+               
                resultG2a = new ArrayList();
                resultG2a.add(resultNull);
             }
@@ -120,13 +118,12 @@ public class MinPriceTest extends HttpServlet {
             }
             else
             {
-                System.out.println("Entrambi null");
+
                 resultMatching.add(resultNull);
             }
         }
         
-        System.out.println("g2a dopo"+resultG2a.size());
-        System.out.println("ig dopo"+resultIg.size());
+
         
         request.setAttribute("resultMatching", resultMatching);
         request.setAttribute("resultIg", resultIg);

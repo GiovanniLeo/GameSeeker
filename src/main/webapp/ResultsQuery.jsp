@@ -231,20 +231,22 @@
                                                     System.out.println("Size G2a " + resultG2a.size());
                                                     flag = true;
                                                     out.println("<div class='row'>");
-                                                    out.println("<div class='col-md-6'>");
+                                                    
                                                     half = (double) resultIg.size() / 2;
                                                     int resto = (resultIg.size() % 2);
                                                     i = 0;
                                                     int k = 0;
                                                     if(resultIg.get(0)==null && resultG2a.get(0)==null)
-                                                    {
-                                                     //   out.println("<p style='text-align:center'>Nessun elemento trovato</p>");
+                                                    {   
+                                                        out.println("<div class='col-md-12'>");
+                                                        out.println("<p style='text-align:center'>Nessun elemento trovato</p>");
                                                     }
                                                     if(resultIg.get(0)==null)
                                                     {
                                                         
                                                     }
                                                     else{
+                                                    out.println("<div class='col-md-6'>");
                                                     while (i < resultIg.size()) {
                                                         if ((i > half || i == half) && flag) {
                                                             out.println("</div>");
@@ -449,7 +451,7 @@
                                                     }
                                                     else
                                                     {
-                                                        //out.println("<p style='text-align:center'>Nessun elemento trovato</p>");
+                                                        out.println("<p style='text-align:center'>Nessun elemento trovato</p>");
                                                     }
                                                     out.println("</div>");
                                                     out.println("</div>");
